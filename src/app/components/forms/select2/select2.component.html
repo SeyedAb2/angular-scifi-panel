@@ -1,0 +1,209 @@
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" class="alert alert-primary alert-dismissible fs-15 fade show mb-4">
+    We Placed <strong class="text-secondary text-decoration-underline">Select2</strong> only in this page by using <strong class="text-secondary text-decoration-underline">jquery</strong> cdn link.
+    <button (click)="collapse.toggle()"
+    [attr.aria-expanded]="!isCollapsed" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x"></i></button>
+</div>
+
+<!-- Start::row-1 -->
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Basic Select2
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-select [items]="simpleItems" [(ngModel)]="selectedSimpleItem">
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Single Select With Placeholder
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-select [items]="simpleItems1" [(ngModel)]="selectedSimpleItem1">
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Multiple Select
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-select [multiple]="true" [(ngModel)]="multipleSelect">
+                    @for(multiple of multiple;track $index){
+                        <ng-option [value]="multiple.id"   
+                           >{{multiple.name}}</ng-option>
+                    }
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Multiple Select With Placeholder
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-select [multiple]="true" placeholder="Select a State" [(ngModel)]="multipleSelect2">
+                    @for(multiple2 of multiple2;track $index){
+                    <ng-option [value]="multiple2.id">{{multiple2.name}}</ng-option>
+                    }
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Templating
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-select appearance="outline"  [searchable]="false" [clearable]="false" labelForId="heroId" placeholder="Kavin">
+                    <ng-option value="batman">
+                        <img src="./assets/images/faces/1.jpg" width="20px" height="20px"/>
+                        Kavin
+                    </ng-option>
+                    <ng-option value="spidey">
+                        <img src="./assets/images/faces/2.jpg" width="20px" height="20px"/>
+                       Maya
+                    </ng-option>
+                    <ng-option value="thor">
+                        <img src="./assets/images/faces/3.jpg" width="20px" height="20px"/>
+                        Brodus
+                    </ng-option>
+                    <ng-option value="spidey">
+                        <img src="./assets/images/faces/4.jpg" width="20px" height="20px"/>
+                       Goldhens
+                    </ng-option>
+                    <ng-option value="thor">
+                        <img src="./assets/images/faces/5.jpg" width="20px" height="20px"/>
+                        Angelina
+                    </ng-option>
+                </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Templating Selection
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-select [items]="cities2" [(ngModel)]="selectedCity1" [maxSelectedItems]="2" bindLabel="name"
+                    bindValue="name">
+                    <ng-template ng-label-tmp let-item="item">
+                        <img height="15" width="15" [src]="item.avatar" />
+                        {{ item.name }}
+                    </ng-template>
+                    <input style="width: 100%; line-height: 24px" type="text" />
+                </ng-select>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->
+
+<!-- Start:: row-2 -->
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Max Selections Limiting
+                </div>
+            </div>
+            <div class="card-body">
+                <ng-select [ngModel]="selectedItems" (ngModelChange)="onChange($event)" [multiple]="true">
+                    <ng-option value="p-1">Kevin</ng-option>
+                    <ng-option value="p-2">Maya</ng-option>
+                    <ng-option value="p-3">Brodus Axel</ng-option>
+                    <ng-option value="p-4">Goldhens</ng-option>
+                    <ng-option value="p-5">Angelina</ng-option>
+                </ng-select>
+                <!-- @if(selectedItems.length === 3){
+                    <span  class="select2-container select2-container--default select2-container--open" style="position: absolute; top: 670.344px; left: 360.906px;">
+                        <span class="select2-dropdown select2-dropdown--below" dir="ltr" style="width: 1470.19px;">
+                            <span class="select2-results">
+                                <ul class="select2-results__options" role="listbox" aria-multiselectable="true" id="select2-i7t7-results" aria-expanded="true" aria-hidden="false">
+                                    <li role="alert" aria-live="assertive" class="select2-results__option select2-results__message">You can only select 3 items</li>
+                                </ul>
+                            </span>
+                        </span>
+                    </span>
+                } -->
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Disabling a Select2 control
+                </div>
+            </div>
+            <div class="card-body vstack gap-3">
+                <ng-select class="js-example-disabled mb-3" [items]="simpleItems3" [(ngModel)]="selectedSimpleItem3" [disabled]="isCarsDisabled">
+                </ng-select>
+                <ng-select class="js-example-disabled-multi" [multiple]="true" [(ngModel)]="selectedSection" [disabled]="isCarsDisabled">
+                    @for(Section of Section;track $index){
+                    <ng-option  [value]="Section.id">{{Section.name}}</ng-option>
+                    }
+                </ng-select>
+                <div>
+                    <button class="btn btn-primary-light js-programmatic-enable me-1" (click)="enable()">Enable</button>
+                    <button class="btn btn-primary js-programmatic-disable me-1" (click)="disable()">Disable</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End:: row-2 -->

@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">Basic Funnel Chart</div>
+            </div>
+            <div class="card-body">
+                    <!--The content below is only a placeholder and can be replaced.-->
+                    <apx-chart
+                    [series]="chartOptions.series!"
+                    [chart]="chartOptions.chart!"
+                    [dataLabels]="chartOptions.dataLabels!"
+                    [plotOptions]="chartOptions.plotOptions!"
+                    [xaxis]="chartOptions.xaxis!"   
+                    [colors]="chartOptions.colors!"
+                    [title]="chartOptions.title!"
+                    [legend]="chartOptions.legend!"
+                  ></apx-chart>
+              
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">Funnel Chart With Data Labels</div>
+            </div>
+            <div class="card-body">
+                <!--The content below is only a placeholder and can be replaced.-->
+                <apx-chart
+                [series]="chartOptions1.series!"
+                [chart]="chartOptions1.chart!"
+                [dataLabels]="chartOptions1.dataLabels!"
+                [plotOptions]="chartOptions1.plotOptions!"
+                [xaxis]="chartOptions1.xaxis!"
+                [colors]="chartOptions1.colors!"
+                [title]="chartOptions1.title!"
+                [legend]="chartOptions1.legend!"
+              ></apx-chart>
+            </div>
+        </div>
+    </div>
+</div>

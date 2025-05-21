@@ -1,0 +1,894 @@
+<!-- Start Switcher -->
+
+<div
+  #switcher
+  class=" switcher offcanvas-end"
+  tabindex="-1"
+  id="switcher-canvas"
+  aria-labelledby="offcanvasRightLabel"
+>
+<div class="offcanvas-header d-block p-0">
+  <div class="d-flex align-items-center justify-content-between p-3">
+    <h5 class="offcanvas-title text-default" id="offcanvasRightLabel">
+      Switcher
+    </h5>
+    <button
+      (click)="activeOffcanvas.close('Close click')"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <nav class="border-top border-block-start-dashed">
+    <div
+      ngbNav
+      #nav="ngbNav"
+      class="nav nav-tabs nav-justified"
+      id="switcher-main-tab"
+      role="tablist"
+    >
+      <ng-container ngbNavItem>
+        <button
+          ngbNavLink
+          class="nav-link"
+          id="switcher-home-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#switcher-home"
+          type="button"
+          role="tab"
+          aria-controls="switcher-home"
+          aria-selected="true"
+        >
+          Theme Styles
+        </button>
+        <ng-template ngbNavContent>
+          <div
+            class="border-0"
+            id="switcher-home"
+            role="tabpanel"
+            aria-labelledby="switcher-home-tab"
+            tabindex="0"
+          >
+            <div class="">
+              <p class="switcher-style-head">Directions:</p>
+              <div class="row switcher-style gx-0">
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-ltr">
+                      LTR
+                    </label>
+                    <input
+                      (click)="updateDirection('ltr')"
+                      [checked]="localdata['direction'] != 'rtl'"
+                      class="form-check-input"
+                      type="radio"
+                      name="direction"
+                      id="switcher-ltr"
+                      checked
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-rtl">
+                      RTL
+                    </label>
+                    <input
+                      (click)="updateDirection('rtl')"
+                      [checked]="localdata['direction'] == 'rtl'"
+                      class="form-check-input"
+                      type="radio"
+                      name="direction"
+                      id="switcher-rtl"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <p class="switcher-style-head">Navigation Styles:</p>
+              <div class="row switcher-style gx-0">
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-vertical">
+                      Vertical
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="navigation-style"
+                      id="switcher-vertical"
+                      (click)="updatemenuType('vertical')"
+                      [checked]="localdata['navigationStyles'] != 'horizontal'"
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-horizontal">
+                      Horizontal
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="navigation-style"
+                      id="switcher-horizontal"
+                      [checked]="localdata['navigationStyles'] == 'horizontal'"
+                      (click)="updatemenuType('horizontal')"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="navigation-menu-styles">
+              <p class="switcher-style-head">
+                Vertical & Horizontal Menu Styles:
+              </p>
+              <div class="row switcher-style gx-0 pb-2 gy-2">
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-menu-click">
+                      Menu Click
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="navigation-menu-styles"
+                      id="switcher-menu-click"
+                      (click)="updatemenuStyle('menu-click')"
+                      [checked]="localdata['menuStyles'] == 'menu-click'"
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-menu-hover">
+                      Menu Hover
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="navigation-menu-styles"
+                      id="switcher-menu-hover"
+                      (click)="updatemenuStyle('menu-hover')"
+                      [checked]="localdata['menuStyles'] == 'menu-hover'"
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-icon-click">
+                      Icon Click
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="navigation-menu-styles"
+                      id="switcher-icon-click"
+                      (click)="updatemenuStyle('icon-click')"
+                      [checked]="localdata['menuStyles'] == 'icon-click'"
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-icon-hover">
+                      Icon Hover
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="navigation-menu-styles"
+                      id="switcher-icon-hover"
+                      (click)="updatemenuStyle('icon-hover')"
+                      [checked]="localdata['menuStyles'] == 'icon-hover'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="sidemenu-layout-styles">
+              <p class="switcher-style-head">Sidemenu Layout Styles:</p>
+              <div class="row switcher-style gx-0 pb-2 gy-2">
+                <div class="col-sm-6">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-default-menu">
+                      Default Menu
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="sidemenu-layout-styles"
+                      id="switcher-default-menu"
+                      (click)="updatelayoutStyles('default')"
+                      [checked]="localdata['layoutStyles'] == 'default'"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-closed-menu">
+                      Closed Menu
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="sidemenu-layout-styles"
+                      id="switcher-closed-menu"
+                      (click)="updatelayoutStyles('closed')"
+                      [checked]="localdata['layoutStyles'] == 'closed'"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check switch-select">
+                    <label
+                      class="form-check-label"
+                      for="switcher-icontext-menu"
+                    >
+                      Icon Text
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="sidemenu-layout-styles"
+                      id="switcher-icontext-menu"
+                      (click)="updatelayoutStyles('icontext')"
+                      [checked]="localdata['layoutStyles'] == 'icontext'"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-icon-overlay">
+                      Icon Overlay
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="sidemenu-layout-styles"
+                      id="switcher-icon-overlay"
+                      (click)="updatelayoutStyles('overlay')"
+                      [checked]="localdata['layoutStyles'] == 'overlay'"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-detached">
+                      Detached
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="sidemenu-layout-styles"
+                      id="switcher-detached"
+                      (click)="updatelayoutStyles('detached')"
+                      [checked]="localdata['layoutStyles'] !== 'detached'"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-double-menu">
+                      Double Menu
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="sidemenu-layout-styles"
+                      id="switcher-double-menu"
+                      (click)="updatelayoutStyles('doublemenu')"
+                      [checked]="localdata['layoutStyles'] == 'doublemenu'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <p class="switcher-style-head">Layout Width Styles:</p>
+              <div class="row switcher-style gx-0">
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-full-width">
+                      Full Width
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="layout-width"
+                      id="switcher-full-width"
+                      (click)="updatewidthStyles('full-width')"
+                      [checked]="localdata['widthStyles'] != 'boxed'"
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-boxed">
+                      Boxed
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="layout-width"
+                      id="switcher-boxed"
+                      (click)="updatewidthStyles('boxed')"
+                      [checked]="localdata['widthStyles'] == 'boxed'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <p class="switcher-style-head">Menu Positions:</p>
+              <div class="row switcher-style gx-0">
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-menu-fixed">
+                      Fixed
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="menu-positions"
+                      id="switcher-menu-fixed"
+                      (click)="updatemenuPosition('fixed')"
+                      [checked]="localdata['menuPosition'] != 'scrollable'"
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-menu-scroll">
+                      Scrollable
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="menu-positions"
+                      id="switcher-menu-scroll"
+                      (click)="updatemenuPosition('scrollable')"
+                      [checked]="localdata['menuPosition'] == 'scrollable'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <p class="switcher-style-head">Header Positions:</p>
+              <div class="row switcher-style gx-0 mb-2">
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label class="form-check-label" for="switcher-header-fixed">
+                      Fixed
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="header-positions"
+                      id="switcher-header-fixed"
+                      (click)="updateheaderPosition('fixed')"
+                      [checked]="localdata['headerPosition'] != 'scrollable'"
+                    />
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-check switch-select">
+                    <label
+                      class="form-check-label"
+                      for="switcher-header-scroll"
+                    >
+                      Scrollable
+                    </label>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="header-positions"
+                      id="switcher-header-scroll"
+                      (click)="updateheaderPosition('scrollable')"
+                      [checked]="localdata['headerPosition'] == 'scrollable'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+      <ng-container [ngbNavItem]="2">
+        <button
+          ngbNavLink
+          class="nav-link"
+          id="switcher-profile-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#switcher-profile"
+          type="button"
+          role="tab"
+          aria-controls="switcher-profile"
+          aria-selected="false"
+        >
+          Theme Colors
+        </button>
+        <ng-template ngbNavContent>
+          <div
+            class="border-0"
+            id="switcher-profile"
+            role="tabpanel"
+            aria-labelledby="switcher-profile-tab"
+            tabindex="0"
+          >
+            <div>
+              <div class="theme-colors">
+                <p class="switcher-style-head">Theme Primary:</p>
+                <div class="d-flex flex-wrap align-items-center switcher-style">
+                  <div class="form-check switch-select me-3">
+                    <input
+                      class="form-check-input color-input color-primary-1"
+                      type="radio"
+                      (click)="
+                        updateprimary({
+                          main: '0, 255, 0',
+                          secondary: '#011a01',
+                          accent: '1, 26, 1'
+                        })
+                      "
+                       [checked]="localdata['themePrimary']?.['main'] == '0, 255, 0'"
+                      name="theme-primary"
+                      id="switcher-primary"
+                    />
+                  </div>
+                  <div class="form-check switch-select me-3">
+                    <input
+                      class="form-check-input color-input color-primary-2"
+                      type="radio"
+                      (click)="
+                        updateprimary({
+                          main: '255, 235, 59',
+                          secondary: '#181601',
+                          accent: '24, 22, 1'
+                        })
+                      "
+                       [checked]="localdata['themePrimary']?.['main'] == '255, 235, 59'"
+                      name="theme-primary"
+                      id="switcher-primary1"
+                    />
+                  </div>
+                  <div class="form-check switch-select me-3">
+                    <input
+                      class="form-check-input color-input color-primary-3"
+                      type="radio"
+                      name="theme-primary"
+                      id="switcher-primary2"
+                      (click)="
+                        updateprimary({
+                          main: '0, 254, 252',
+                          secondary: '#011813',
+                          accent: ' 1, 24, 19'
+                        })
+                      "
+                      [checked]="localdata['themePrimary']?.['main'] == '0, 254, 252'"
+                    />
+                  </div>
+                  <div class="form-check switch-select me-3">
+                    <input
+                      class="form-check-input color-input color-primary-4"
+                      type="radio"
+                      name="theme-primary"
+                      id="switcher-primary3"
+                      (click)="
+                        updateprimary({
+                          main: '0, 175, 255',
+                          secondary: '#011118',
+                          accent: '1, 17, 24'
+                        })
+                      "
+                      [checked]="localdata['themePrimary']?.['main'] == '0, 175, 255'"
+                    />
+                  </div>
+                  <div class="form-check switch-select me-3">
+                    <input
+                      class="form-check-input color-input color-primary-5"
+                      type="radio"
+                      name="theme-primary"
+                      id="switcher-primary4"
+                      (click)="
+                        updateprimary({
+                          main: '209, 115, 255',
+                          secondary: '#110118',
+                          accent: ' 17, 1, 24'
+                        })
+                      "
+                       [checked]="localdata['themePrimary']?.['main'] == '209, 115, 255'"
+                    />
+                  </div>
+                  <div
+                    class="form-check switch-select ps-0 mt-1 color-primary-light"
+                  >
+                    <div class="theme-container-primary"></div>
+                    <div
+                      class="pickr-container-primary"
+                      onchange="updateChartColor(this.value)"
+                    >
+                      <div class="pickr">
+                        <button
+                          type="button"
+                          role="button"
+                          aria-label="toggle color picker dialog"
+                          class="color-bg-transparent pcr-button bg-secondary"
+                          style="--pcr-color: rgba(132, 90, 223, 1)"
+                          [style.background]="defaultPrimary"
+                          [cpAlphaChannel]="'disabled'"
+                          [cpOutputFormat]="'rgba'"
+                          [(colorPicker)]="defaultPrimary"
+                          (cpSliderDragEnd)="dynamicLightPrimary($event)"
+                        ></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pattern-image mb-3">
+                  <p class="switcher-style-head">Background Patterns:</p>
+                  <div
+                    class="d-flex flex-wrap align-items-center switcher-style"
+                  >
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern1')"
+                        [checked]="localdata['bgPatternImage'] == 'bgpattern1'"
+                        class="form-check-input patternimage-input bg-pattern1"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern2')"  [checked]="localdata['bgPatternImage'] == 'bgpattern2'"
+                        class="form-check-input patternimage-input bg-pattern2"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img1"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern3')"  [checked]="localdata['bgPatternImage'] == 'bgpattern3'"
+                        class="form-check-input patternimage-input bg-pattern3"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img2"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input 
+                        (click)="updateBgPattern('bgpattern4')"  
+                        class="form-check-input patternimage-input bg-pattern4"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img3"
+                        checked
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern5')"  [checked]="localdata['bgPatternImage'] == 'bgpattern5'"
+                        class="form-check-input patternimage-input bg-pattern5"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img4"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern6')"  [checked]="localdata['bgPatternImage'] == 'bgpattern6'"
+                        class="form-check-input patternimage-input bg-pattern6"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img5"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern7')"  [checked]="localdata['bgPatternImage'] == 'bgpattern7'"
+                        class="form-check-input patternimage-input bg-pattern7"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img6"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern8')"  [checked]="localdata['bgPatternImage'] == 'bgpattern8'"
+                        class="form-check-input patternimage-input bg-pattern8"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img7"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern9')"  [checked]="localdata['bgPatternImage'] == 'bgpattern9'"
+                        class="form-check-input patternimage-input bg-pattern9"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img8"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgPattern('bgpattern10')"  [checked]="localdata['bgPatternImage'] == 'bgpattern10'"
+                        class="form-check-input patternimage-input bg-pattern10"
+                        type="radio"
+                        name="background-pattern"
+                        id="switcher-pattern-img9"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-style mb-3">
+                  <p class="switcher-style-head">Card Styling:</p>
+                  <div
+                    class="d-flex flex-wrap align-items-center switcher-style"
+                  >
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style1')"
+                        class="form-check-input card-input card-style1"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style"
+                        checked
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style2')"  [checked]="localdata['codingStyles'] == 'style2'"
+                        class="form-check-input card-input card-style2"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style1"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style3')"  [checked]="localdata['codingStyles'] == 'style3'"
+                        class="form-check-input card-input card-style3"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style2"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style4')"  [checked]="localdata['codingStyles'] == 'style4'"
+                        class="form-check-input card-input card-style4"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style3"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style5')"  [checked]="localdata['codingStyles'] == 'style5'"
+                        class="form-check-input card-input card-style5"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style4"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style6')"  [checked]="localdata['codingStyles'] == 'style6'"
+                        class="form-check-input card-input card-style6"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style5"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style7')"  [checked]="localdata['codingStyles'] == 'style7'"
+                        class="form-check-input card-input card-style7"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style6"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style8')"  [checked]="localdata['codingStyles'] == 'style8'"
+                        class="form-check-input card-input card-style8"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style7"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style9')"  [checked]="localdata['codingStyles'] == 'style9'"
+                        class="form-check-input card-input card-style9"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style8"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCodingStyle('style10')"  [checked]="localdata['codingStyles'] == 'style10'"
+                        class="form-check-input card-input card-style10"
+                        type="radio"
+                        name="card-style"
+                        id="switcher-card-style9"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-background mb-3">
+                  <p class="switcher-style-head">Card Background:</p>
+                  <div
+                    class="d-flex flex-wrap align-items-center switcher-style"
+                  >
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background1')" 
+                        class="form-check-input card-input card-background1"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background"
+                        checked
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background2')"  [checked]="localdata['cardBackground'] == 'background2'"
+                        class="form-check-input card-input card-background2"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background1"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background3')" [checked]="localdata['cardBackground'] == 'background3'"
+                        class="form-check-input card-input card-background3"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background2"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background4')" [checked]="localdata['cardBackground'] == 'background4'"
+                        class="form-check-input card-input card-background4"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background3"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background5')" [checked]="localdata['cardBackground'] == 'background5'"
+                        class="form-check-input card-input card-background5"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background4"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background6')" [checked]="localdata['cardBackground'] == 'background6'"
+                        class="form-check-input card-input card-background6"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background5"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background7')" [checked]="localdata['cardBackground'] == 'background7'"
+                        class="form-check-input card-input card-background7"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background6"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background8')" [checked]="localdata['cardBackground'] == 'background8'"
+                        class="form-check-input card-input card-background8"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background7"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateCardBg('background9')" [checked]="localdata['cardBackground'] == 'background9'"
+                        class="form-check-input card-input card-background9"
+                        type="radio"
+                        name="card-background"
+                        id="switcher-card-background8"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="menu-image mb-3">
+                  <p class="switcher-style-head">Menu With Background Image:</p>
+                  <div
+                    class="d-flex flex-wrap align-items-center switcher-style"
+                  >
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgImage('bgimg1')" [checked]="localdata['backgroundImage'] == 'bgimg1'"
+                        class="form-check-input bgimage-input bg-img1"
+                        type="radio"
+                        name="theme-background"
+                        id="switcher-bg-img"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgImage('bgimg2')"  [checked]="localdata['backgroundImage'] == 'bgimg2'"
+                        class="form-check-input bgimage-input bg-img2"
+                        type="radio"
+                        name="theme-background"
+                        id="switcher-bg-img1"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgImage('bgimg3')"  [checked]="localdata['backgroundImage'] == 'bgimg3'"
+                        class="form-check-input bgimage-input bg-img3"
+                        type="radio"
+                        name="theme-background"
+                        id="switcher-bg-img2"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgImage('bgimg4')"  [checked]="localdata['backgroundImage'] == 'bgimg4'"
+                        class="form-check-input bgimage-input bg-img4"
+                        type="radio"
+                        name="theme-background"
+                        id="switcher-bg-img3"
+                      />
+                    </div>
+                    <div class="form-check switch-select m-1">
+                      <input
+                        (click)="updateBgImage('bgimg5')"  [checked]="localdata['backgroundImage'] == 'bgimg5'"
+                        class="form-check-input bgimage-input bg-img5"
+                        type="radio"
+                        name="theme-background"
+                        id="switcher-bg-img4"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+  </nav>
+</div>
+<div class="offcanvas-body customtab overflow-scroll">
+  <!-- <div class="tab-content" id="nav-tabContent"> -->
+    <div [ngbNavOutlet]="nav"></div>
+    <div
+      class="d-grid canvas-footer"
+    >
+      <a
+        href="javascript:void(0);"
+        id="reset-all"
+        class="btn btn-danger flex-fill"
+        (click)="reset()"
+        >Reset</a
+      >
+    </div>
+  <!-- </div> -->
+</div>
+</div>
+<!-- End Switcher -->

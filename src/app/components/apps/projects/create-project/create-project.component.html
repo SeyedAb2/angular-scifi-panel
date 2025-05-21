@@ -1,0 +1,120 @@
+  <!-- Start::row-1 -->
+  <div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Create Project
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row gy-3">
+                    <div class="col-xl-12">
+                        <label for="input-label" class="form-label">Project Name :</label>
+                        <input type="text" class="form-control" id="input-label" placeholder="Enter Project Name">
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Start Date :</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                <input
+                                type="text"
+                                class="form-control date-input"
+                                id="date"
+                                placeholder="Choose date and time"
+                                name="dp"
+                                mwlFlatpickr
+                                [(ngModel)]="basicDemoValue"
+                              />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">End Date :</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                <input
+                                type="text"
+                                class="form-control date-input"
+                                id="date"
+                                placeholder="Choose date and time"
+                                name="dp"
+                                mwlFlatpickr
+                                [(ngModel)]="basicDemoValue1"
+                              />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Status :</label>
+                        <ng-select placeholder="Inprogress"  data-trigger name="choices-single-default1" id="choices-single-default1">
+                            <ng-option value="Inprogress" selected>Inprogress</ng-option>
+                            <ng-option value="On-hold">On-hold</ng-option>
+                            <ng-option value="Completed">Completed</ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Priority :</label>
+                        <ng-select  placeholder="High" data-trigger name="choices-single-default" id="choices-single-default">
+                            <ng-option value="High">High</ng-option>
+                            <ng-option value="Medium">Medium</ng-option>
+                            <ng-option value="Low">Low</ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Assign To :</label>
+                        <ng-select
+                        class=""
+                        [items]="options"
+                        bindLabel="name"
+                        [multiple]="true"
+                        [hideSelected]="true"
+                        [closeOnSelect]="false"
+                        [selectableGroup]="true"
+                        [compareWith]="MultipleAttribute"
+                        [(ngModel)]="showattributeName"
+                      >
+                        <ng-template ng-optgroup-tmp let-item="item">
+                          {{ item.options || "Unnamed group" }}
+                        </ng-template>
+                      </ng-select>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Tags :</label>
+                        <ng-select [items]="companies"
+           [addTag]="addTagFn"
+           [hideSelected]="true"
+           [multiple]="true"
+           bindLabel="name"
+           [(ngModel)]="selectedCompanies"
+           
+           >
+</ng-select>
+                    </div>
+                    <div class="col-xl-12">
+                        <label class="form-label">Project Description :</label>
+                            <angular-editor [(ngModel)]="htmlContent" [config]="config">
+                            </angular-editor>
+                    </div>
+                    <div class="col-xl-12">
+                        <label class="form-label">Attachments :</label>
+                        <file-pond #myPond [options]="pondOptions" class="multiple-filepond" [files]="pondFiles"
+                        (oninit)="pondHandleInit()" (onaddfile)="pondHandleAddFile($event)"
+                        (onactivatefile)="pondHandleActivateFile($event)">
+                      </file-pond>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary-light btn-wave ms-auto float-end">Create Project</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->

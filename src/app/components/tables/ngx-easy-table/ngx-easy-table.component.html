@@ -1,0 +1,101 @@
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" class="alert alert-secondary alert-dismissible fs-15 fade show mb-4">
+    We Placed <strong class="text-fixed-black">Datatables</strong> only in this page by using <strong class="text-fixed-black">jquery</strong> cdn link.
+    <button (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x"></i></button>
+  </div>
+  
+  <!-- Start::row-1 -->
+  <div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Basic Datatable
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <ngx-table id="datatable-basic" class="table table-bordered text-nowrap w-100"
+                    [configuration]="configuration"
+                    [data]="data"
+                    [columns]="columns"
+                  >
+                  </ngx-table>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--End::row-1 -->
+  
+  <!-- Start:: row-2 -->
+  <div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Table with Pagination
+                </div>
+            </div>
+            <div class="card-body">
+                <ngx-table [configuration]="configuration1" [data]="data" [columns]="columns" class="ngx-tables">
+                </ngx-table>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End:: row-2 -->
+  
+  <!-- Start:: row-3 -->
+  <div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>  
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                    Table With Search
+                </div>
+            </div>
+            <div class="card-body">
+                <input class="form-input" type="text" id="globalSearch" (input)="onChange($event)"
+                placeholder="Search" />
+            <div id="grid-search">
+                <ngx-table [configuration]="configuration" [data]="data" #table [columns]="columns">
+                </ngx-table>
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End:: row-3 -->
+  <!-- Start:: row-8 -->
+  <div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">
+                   Dragable Row and Columns
+                </div>
+            </div>
+            <div class="card-body">
+                <ngx-table [data]="data" [configuration]="configuration2" [columns]="columns"> </ngx-table>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End:: row-8 -->

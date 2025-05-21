@@ -1,0 +1,895 @@
+   <!-- app-header -->
+   <header class="app-header sticky"> 
+
+    <!-- Start::main-header-container -->
+    <div class="main-header-container container-fluid"> 
+
+        <!-- Start::header-content-left -->
+        <div  class="header-content-left">
+            <!-- Start::header-element -->
+            <div class="header-element">
+                <div class="horizontal-logo">
+                    <a [routerLink]="['/dashboards/gaming']" class="header-logo">
+                        <img src="./assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
+                        <img src="./assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
+                        <img src="./assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+                        <img src="./assets/images/brand-logos/toggle-dark.png" alt="logo" class="toggle-dark">
+                    </a>
+                </div>
+            </div> 
+            <!-- End::header-element -->
+
+            <!-- Start::header-element -->
+            <div (click)="togglesidebar()" href="javascript:void(0);"  class="header-element mx-lg-0 mx-2">
+                <a  class="sidemenu-toggle header-link animated-arrow hor-toggle horizontal-navtoggle" ><span></span></a>
+            </div>
+            <!-- End::header-element -->
+        </div>
+        <!-- End::header-content-left -->
+
+        <!-- Start::header-content-right -->
+        <ul class="header-content-right">
+
+            <!-- Start::header-element -->
+            <li class="header-element header-search d-md-block d-none">
+                <!-- Start::header-link -->
+                <input type="text" class="header-search-bar form-control border-0" placeholder="Search for Results...">
+                <a href="javascript:void(0);" class="header-search-icon border-0">
+                    <i class="bi bi-search"></i>
+                </a>
+                <!-- End::header-link -->
+            </li>
+            <!-- End::header-element -->
+            
+            <!-- Start::header-element -->
+            <li class="header-element d-md-none d-block">
+                <a (click)="open(content1)" href="javascript:void(0);" class="header-link" data-bs-toggle="modal" data-bs-target="#header-responsive-search">
+                    <!-- Start::header-link-icon -->
+                    <i class="bi bi-search header-link-icon"></i>
+                    <!-- End::header-link-icon -->
+                </a>
+            </li>
+            <!-- End::header-element -->
+            <ng-template #content1 let-modal>
+                  <div class="modal-content">
+                      <div class="modal-body">
+                          <div class="input-group">
+                              <input type="text" class="form-control border-end-0" placeholder="Search Anything ..."
+                                  aria-label="Search Anything ..." aria-describedby="button-addon2">
+                              <button class="btn btn-primary" type="button"
+                                  id="button-addon2"><i class="bi bi-search"></i></button>
+                          </div>
+                      </div>
+                  </div>
+              
+        </ng-template>
+
+            <!-- Start::header-element -->
+            <li ngbDropdown class="header-element country-selector dropdown">
+                <!-- Start::header-link|dropdown-toggle -->
+                <a ngbDropdownToggle href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown">
+                    <img src="./assets/images/flags/us_flag.jpg" alt="img" class="header-link-icon">
+                </a>
+                <!-- End::header-link|dropdown-toggle -->
+                <ul ngbDropdownMenu class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
+                            <span class="avatar avatar-xs lh-1 me-2">
+                                <img src="./assets/images/flags/us_flag.jpg" alt="img">
+                            </span>
+                            English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
+                            <span class="avatar avatar-xs lh-1 me-2">
+                                <img src="./assets/images/flags/spain_flag.jpg" alt="img" >
+                            </span>
+                            Spanish
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
+                            <span class="avatar avatar-xs lh-1 me-2">
+                                <img src="./assets/images/flags/french_flag.jpg" alt="img" >
+                            </span>
+                            French
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
+                            <span class="avatar avatar-xs lh-1 me-2">
+                                <img src="./assets/images/flags/germany_flag.jpg" alt="img" >
+                            </span>
+                            German
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
+                            <span class="avatar avatar-xs lh-1 me-2">
+                                <img src="./assets/images/flags/italy_flag.jpg" alt="img" >
+                            </span>
+                            Italian
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:void(0);">
+                            <span class="avatar avatar-xs lh-1 me-2">
+                                <img src="./assets/images/flags/russia_flag.jpg" alt="img" >
+                            </span>
+                            Russian
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End::header-element -->
+
+            <!-- Start::header-element -->
+            <li class="header-element header-fullscreen">
+                <!-- Start::header-link -->
+                <a  (click)="toggleFullscreen()" href="javascript:void(0);" class="header-link">
+                    <i  [ngClass]="{ 'd-none': isFullscreen }" class="bi bi-fullscreen full-screen-open header-link-icon"></i>
+                    <i  [ngClass]="{ 'd-none': !isFullscreen }" class="bi bi-fullscreen-exit full-screen-close header-link-icon d-none"></i>
+                </a>
+                <!-- End::header-link -->
+            </li>
+            <!-- End::header-element -->
+
+            <!-- Start::header-element -->
+            <li class="header-element">
+                <!-- Start::header-link|dropdown-toggle -->
+                <a  (click)="openEnd(content)" href="javascript:void(0);" class="header-link" data-bs-toggle="offcanvas" data-bs-target="#apps-header-offcanvas">
+                    <i class="bi bi-grid header-link-icon"></i>
+                </a>
+                <!-- End::main-header-dropdown -->
+                <ng-template #content let-offcanvas>
+                        <div class="offcanvas-header border-bottom">
+                          <h6 class="offcanvas-title" id="offcanvasExampleLabel">Shortcuts</h6>
+                          <button (click)="offcanvas.dismiss('Cross click')" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                          <div class="panel tabs-style2">
+                            <div class="panel-head">
+                              <ul ngbNav #nav="ngbNav" class="nav d-flex  app-header-nav-tabs">
+                                <li [ngbNavItem]="1" class="nav-item  flex-grow-1 text-center mb-sm-0 mb-2"><a ngbNavLink class="nav-link" data-bs-toggle="tab"
+                                 ><i class="bi bi-person-gear me-2 d-inline-block"></i> Chat</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="text-end rounded-0 mt-3">
+                                            <a [routerLink]="['/pages/email/mailsettings']" class="text-primary m-2">Mail Settings</a>
+                                          </div>
+                                          <div class="p-3  border-bottom">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                              <p class="mb-0 font-weight-semibold">Messages</p>
+                                              <a [routerLink]="['/pages/email/mailapp']" class="btn btn-sm btn-primary-light btn-icon btn-icon"><i class="ri-chat-1-line"></i></a>
+                                            </div>
+                                            <ul class="list-unstyled mb-0 mt-2">
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/5.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Elizabeth Ava<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">2</span><span
+                                                          class="ms-2"><i class="ti-pin-alt fs-11 text-muted"></i></span></h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">3:55 PM</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12 text-muted d-flex align-items-center">Elizabeth is
+                                                      online</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/9.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">George Rhys<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">1</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">12:04 PM</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12 text-muted d-flex align-items-center">I must explain...</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/8.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Bethany Isla<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">2</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">Yesterday</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12">We denounce with righteous..</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/3.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Margaret Emma<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">1</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">01 Mar</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12 text-muted d-flex align-items-center"><i
+                                                        class="fe fe-link-2 me-1 fs-12 text-primary"></i><a
+                                                        href="javascript:void(0);">http://Diam-duoet.xd</a></p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-0">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/10.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Michael Souris<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">1</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">22 Feb</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12 text-muted d-flex align-items-center"><i
+                                                        class="fe fe-image me-1 fs-12 text-primary"></i>+10 photos</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                            <div class="text-end mt-2">
+                                              <a [routerLink]="['/pages/chat']" class="text-primary">View All</a>
+                                            </div>
+                                          </div>
+                                          <div class="p-3 border-bottom">
+                                            <div class="d-flex align-items-center justify-content-between my-3">
+                                              <p class="mb-0 font-weight-semibold">Workspace</p>
+                                              <a [routerLink]="['/pages/email/mailapp']" class="btn btn-sm btn-primary-light btn-icon btn-icon"><i class="ri-add-circle-line"></i></a>
+                                            </div>
+                                            <ul class="list-unstyled mb-0 mt-1">
+                                              <li class="mb-3">
+                                                <div class="d-flex">
+                                                  <div class="avatar avatar  shadow bg-primary-transparent">
+                                                    <i class="ri-user-line"></i>
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Olivia Lily<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">1</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">2:00 PM</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12">Aliquyam ipsum sit.</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex">
+                                                  <div class="avatar avatar  shadow bg-secondary-transparent">
+                                                    <i class="ri-arrow-right-circle-line"></i>
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Smith Brown<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">2</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">12:00 PM</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12">At eos no sit...</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex">
+                                                  <div class="avatar avatar  shadow bg-warning-transparent">
+                                                    <i class="ri-drag-move-line"></i>
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Wilson Li<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">24</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">16 Feb</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12">Sit est dolor dolor.</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex">
+                                                  <div class="avatar avatar  shadow bg-success-transparent">
+                                                    <i class="ri-home-8-line"></i>
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Jones Morton<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">3</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">12 Jan </span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12">Erat diam ipsum... Sed dolor...</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-0">
+                                                <div class="d-flex">
+                                                  <div class="avatar avatar  shadow bg-danger-transparent">
+                                                    <i class="ri-global-line"></i>
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">White Lee<span
+                                                          class="badge bg-primary-transparent fs-11 ms-2 font-weight-normal">1</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">01 Feb</span>
+                                                    </div>
+                                                    <p class="mb-0 fs-12">Justo accusam stet eirmod et....</p>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                            <div class="text-end mt-2">
+                                              <a [routerLink]="['/pages/chat']" class="text-primary">View All</a>
+                                            </div>
+                                          </div>
+                                          <div class="p-3 border-bottom">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                              <p class="mb-0 font-weight-semibold">Calls</p>
+                                              <a [routerLink]="['/pages/contacts']" class="btn btn-sm btn-primary-light btn-icon btn-icon"><i class="ri-phone-line"></i></a>
+                                            </div>
+                                            <ul class="list-unstyled mb-0 mt-2">
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/14.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Wilfrid Price<span
+                                                          class="badge bg-danger-transparent text-danger fs-11 ms-2 font-weight-normal">3</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">11:15 AM</span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                      <p class="mb-0 fs-12 text-muted d-flex align-items-center"><i
+                                                          class="fe fe-x me-1 fs-13 text-danger"></i>Missed call</p>
+                                                      <span class="text-primary"><i class="fe fe-phone"></i></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap" data-bs-toggle="modal"
+                                                    data-bs-target="#videoModal"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/7.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Jasmin O'Kon</h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">Yesterday</span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                      <p class="mb-0 fs-12 text-muted d-flex align-items-center"><i
+                                                          class="fe fe-arrow-down-left me-1 fs-13 text-primary"></i>Duration:
+                                                        15:30</p>
+                                                      <span class="text-primary"><i class="fe fe-video"></i></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap" data-bs-toggle="modal"
+                                                    data-bs-target="#videoModal"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/4.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">River Gleichner</h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">01 Mar</span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                      <p class="mb-0 fs-12 text-muted d-flex align-items-center"><i
+                                                          class="fe fe-arrow-up-right me-1 fs-13 text-primary"></i>Declined
+                                                      </p>
+                                                      <span class="text-primary"><i class="fe fe-video"></i></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-3">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/12.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Saul Goodmate<span
+                                                          class="badge bg-danger-transparent text-danger fs-11 ms-2 font-weight-normal">1</span>
+                                                      </h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">20 Feb</span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                      <p class="mb-0 fs-12 text-muted d-flex align-items-center"><i
+                                                          class="fe fe-x me-1 fs-13 text-danger"></i>Missed call</p>
+                                                      <span class="text-primary"><i class="fe fe-phone"></i></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                              <li class="mb-0">
+                                                <div class="d-flex pos-relative">
+                                                  <a href="javascript:void(0)" class="link-overlap"></a>
+                                                  <div class="main-img-user avatar d-none d-sm-block">
+                                                    <img alt="avatar" class="shadow" src="./assets/images/faces/13.jpg">
+                                                  </div>
+                                                  <div class="flex-grow-1 ms-2 fs-13">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0">Edgardo Huel</h6>
+                                                      <span class="fs-11 text-muted ms-auto my-auto">15 Feb</span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                      <p class="mb-0 fs-12 text-muted d-flex align-items-center"><i
+                                                          class="fe fe-arrow-down-left me-1 fs-13 text-success"></i>Duration:
+                                                        01:20:10</p>
+                                                      <span class="text-primary"><i class="fe fe-phone"></i></span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </li>
+                                            </ul>
+                                            <div class="text-end mt-3">
+                                              <a [routerLink]="['/pages/chat']" class="text-primary">View All</a>
+                                            </div>
+                                          </div>
+                                          <div class="p-3 text-center">
+                                            <div class="svg-card overflow-hidden">
+                                              <img src="./assets/images/media/media-67.jpg" alt="">
+                                            </div>
+                                            <h6 class="mt-3">Find out more !</h6>
+                                            <a [routerLink]="['/pages/email/mailsettings']" class="btn btn-outline-primary btn-block">Mail Settings</a>
+                                          </div>
+                                    </ng-template>
+                                </li>
+
+                                <li [ngbNavItem]="2" class="nav-item mb-2 flex-grow-1 text-center"><a ngbNavLink class="nav-link" data-bs-toggle="tab" ><i
+                                      class="bi bi-chat me-2 d-inline-block"></i>Settings</a>
+                                      <ng-template ngbNavContent>
+                                        <div class="border-bottom">
+                                            <h6 class="p-3">Notifications :</h6>
+                                            <div class="panel mt-2 tabs-style5 p-3">
+                                              <div class="panel-head">
+                                                <ul ngbNav #nav1="ngbNav" class="nav app-header-nav-tabs mb-3">
+                                                  <li [ngbNavItem]="1" class="nav-item flex-grow-1 text-center"><a ngbNavLink class="nav-link" data-bs-toggle="tab"
+                                                      >Home</a>
+                                                      <ng-template ngbNavContent>
+                                                        <div class="rounded-0 p-2">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                              <label class="text-muted d-flex align-items-center">Someone
+                                                                mentioned</label>
+                                                              <div class="custom-toggle-switch ms-auto"> 
+                                                                  <input id="some" name="toggleswitchsize" type="checkbox"> 
+                                                                  <label for="some" class="label-primary mb-1"></label>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="mt-3 p-2">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                              <label class="text-muted d-flex align-items-center">Someone
+                                                                Replies</label>
+                                                                <div class="custom-toggle-switch ms-auto"> 
+                                                                    <input id="reply" name="toggleswitchsize" type="checkbox"> 
+                                                                    <label for="reply" class="label-primary mb-1"></label>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="mt-3 p-2">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                              <label class="text-muted d-flex align-items-center">Allow All
+                                                                Notifications</label>
+                                                                <div class="custom-toggle-switch ms-auto"> 
+                                                                  <input id="notify-allow" name="toggleswitchsize" type="checkbox" checked> 
+                                                                  <label for="notify-allow" class="label-primary mb-1"></label>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="d-flex align-items-center justify-content-between mt-3 flex-wrap p-2">
+                                                            <label class="text-muted mb-0">Notifications On</label>
+                                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                              <input type="radio" class="btn-check" name="radioChat" id="radio1">
+                                                              <label class="btn btn-sm btn-outline-primary mb-0" for="radio1">In App</label>
+                                    
+                                                              <input type="radio" class="btn-check" name="radioChat" id="radio2" checked>
+                                                              <label class="btn btn-sm btn-outline-primary mb-0" for="radio2">Email</label>
+                                    
+                                                              <input type="radio" class="btn-check" name="radioChat" id="radio3">
+                                                              <label class="btn btn-sm btn-outline-primary mb-0" for="radio3">Both</label>
+                                                            </div>
+                                                          </div>
+                                                      </ng-template>
+                                                    </li>
+                                                  <li [ngbNavItem]="2" class="nav-item flex-grow-1 text-center">
+                                                    <a ngbNavLink class="nav-link" data-bs-toggle="tab" >Tasks</a>
+                                                    <ng-template ngbNavContent> 
+                                                        <div class="rounded-0 p-2 pt-3">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                              <label class="text-muted d-flex align-items-center">Assigned a
+                                                                Task</label>
+                                                                <div class="custom-toggle-switch ms-auto"> 
+                                                                    <input id="task" name="toggleswitchsize" type="checkbox"> 
+                                                                    <label for="task" class="label-primary mb-1"></label>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="mt-3 p-2">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                              <label class="text-muted d-flex align-items-center">If I Have More
+                                                                Than 24 Tasks</label>
+                                                                <div class="custom-toggle-switch ms-auto"> 
+                                                                    <input id="listed" name="toggleswitchsize" type="checkbox"> 
+                                                                    <label for="listed" class="label-primary mb-1"></label>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="mt-3 p-2">
+                                                            <div class="d-flex align-items-center justify-content-between">
+                                                              <label class="text-muted d-flex align-items-center">Allow All
+                                                                Notifications</label>
+                                                                <div class="custom-toggle-switch ms-auto"> 
+                                                                    <input id="all-notify" name="toggleswitchsize" type="checkbox" checked> 
+                                                                    <label for="all-notify" class="label-primary mb-1"></label>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="d-flex align-items-center justify-content-between mt-3 flex-wrap p-2 pb-3">
+                                                            <label class="text-muted mb-0">Notifications On</label>
+                                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                              <input type="radio" class="btn-check" name="radioTasks" id="radio4" checked>
+                                                              <label class="btn btn-sm btn-outline-primary mb-0" for="radio4">In App</label>
+                                    
+                                                              <input type="radio" class="btn-check" name="radioTasks" id="radio5">
+                                                              <label class="btn btn-sm btn-outline-primary mb-0" for="radio5">Email</label>
+                                    
+                                                              <input type="radio" class="btn-check" name="radioTasks" id="radio6">
+                                                              <label class="btn btn-sm btn-outline-primary mb-0" for="radio6">Both</label>
+                                                            </div>
+                                                          </div>
+                                                    </ng-template>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                              <div class="panel-body p-0">
+                                                <div class="tab-content" [ngbNavOutlet]="nav1">
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="p-3 border-bottom">
+                                            <h6>App :</h6>
+                                            <div class="panel mt-2 tabs-style5">
+                                              <div class="panel-head">
+                                                <ul ngbNav #nav2="ngbNav" class="nav app-header-nav-tabs mb-3">
+                                                  <li [ngbNavItem]="1" class="nav-item flex-grow-1 text-center"><a ngbNavLink class="nav-link" data-bs-toggle="tab"
+                                                     >Files</a>
+                                                     <ng-template ngbNavContent>
+                                                        <div class="rounded-0 p-3">
+                                                            <p class="mb-0">Files</p>
+                                                            <div class="mt-3">
+                                                              <div class="mb-0 d-flex align-items-center justify-content-between">
+                                                                <span class="text-muted">
+                                                                  <i class="ri-folder-image-fill me-1 d-inline-block fs-18 text-primary"></i>
+                                                                  Images
+                                                                </span>
+                                                                
+                                                                <div class=" ms-auto="> 
+                                                                  1,458
+                                                              </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="mt-3">
+                                                              <div class="mb-0 d-flex align-items-center justify-content-between">
+                                                                <span class="text-muted">
+                                                                  <i class="ri-live-line me-1 d-inline-block fs-18 text-secondary"></i>
+                                                                  Videos
+                                                                </span>
+                                                                
+                                                                <div class=" ms-auto="> 
+                                                                  213
+                                                              </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="mt-3">
+                                                              <div class="mb-0 d-flex align-items-center justify-content-between">
+                                                                <span class="text-muted">
+                                                                  <i class="ri-database-2-line me-1 d-inline-block fs-18 text-success"></i>
+                                                                  Storage
+                                                                </span>
+                                                                
+                                                              <div class=" ms-auto text-success"> 
+                                                                8.50MB free space
+                                                            </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                          <div class="mt-4 p-3">
+                                                            <p class="mb-0">Files Privacy Settings :</p>
+                                                            <div class="mt-3">
+                                                              <div class="form-group mb-0">
+                                                                <p class="mb-2 d-flex align-items-center justify-content-between">
+                                                                  <label for="inputPassword" class="mb-0 text-muted">Password</label>
+                                                                  <a href="javascript:void(0)" class="fs-11 text-primary" id="changePassword">change</a>
+                                                                </p>
+                                                                <input type="password" class="form-control form-contron-sm radius-4" id="inputPassword"
+                                                                  placeholder="Enter New Password" value="passwordzem">
+                                                                <div class="mt-2 d-none" id="reEnterPassword">
+                                                                  <input type="password" class="form-control form-contron-sm radius-4" id="inputPasswordTwo"
+                                                                    placeholder="Re-Enter Password">
+                                                                  <div class="btn-list mt-2 text-end">
+                                                                    <a href="javascript:void(0)" class="text-danger" id="closePassword">Discard</a>
+                                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary ms-3">Save
+                                                                      Changes</a>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="mt-3">
+                                                              <div class="mb-0 d-flex align-items-center justify-content-between">
+                                                                <span class="text-muted d-flex align-items-center">Two Factor
+                                                                  Authentication</span>
+                                                                <div class="custom-toggle-switch ms-auto"> 
+                                                                  <input id="authentication" name="toggleswitchsize" type="checkbox" checked> 
+                                                                  <label for="authentication" class="label-primary mb-1"></label>
+                                                              </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="mt-3">
+                                                              <div class="form-group mb-0">
+                                                                <p class="mb-0 d-flex align-items-center justify-content-between">
+                                                                  <label for="inputPassword" class="mb-0 text-muted">Recent Deleted Files</label>
+                                                                    <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger mt-2">Delete All</a>
+                                                                </p>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                    </ng-template>
+                                                    </li>
+                                                  <li [ngbNavItem]="2" class="nav-item flex-grow-1 text-center"><a ngbNavLink class="nav-link" data-bs-toggle="tab" >Profile</a>
+                                                    <ng-template ngbNavContent>
+                                                        <div class="rounded-0 p-3">
+                                                            <div class="form-group mb-3">
+                                                              <label class="text-muted" for="inputName">Full Name</label>
+                                                              <input type="text" class="form-control radius-4" id="inputName" placeholder="Enter Full Name"
+                                                                value="Json Taylor">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                              <label class="text-muted" for="inputMail">Email</label>
+                                                              <input type="email" class="form-control radius-4" id="inputMail" placeholder="Enter Your Mail"
+                                                                value="nicktaylor@spruko.me">
+                                                            </div>
+                                                            <div class="form-group mb-3">
+                                                              <label for="inputNumber" class="text-muted d-flex align-items-center justify-content-between">
+                                                                Mobile Number
+                                                                <a href="javascript:void(0)" class="fs-11 text-primary" data-bs-target="#country-selector"
+                                                                  data-bs-toggle="modal">Change Number</a>
+                                                              </label>
+                                                              <div class="input-group">
+                                                                <span class="input-group-text br-ts-20 br-bs-20">+11</span>
+                                                                <input type="number" class="form-control br-te-4 br-be-4" id="inputNumber"
+                                                                  placeholder="Enter Your Number" value="1179360254">
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                    </ng-template>
+                                                  </li>
+                                                </ul>
+                                              </div>
+                                              <div class="panel-body p-0">
+                                                <div class="tab-content" [ngbNavOutlet]="nav2">
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="p-3 border-bottom">
+                                            <h6>Remaiders :</h6>
+                                            <div class="mt-3">
+                                              <div class="d-flex align-items-center justify-content-between">
+                                                <label class="text-muted">Get alert for remaiders</label>
+                                                <div class="custom-toggle-switch ms-auto"> 
+                                                  <input id="mails-images" name="toggleswitchsize" type="checkbox" checked> 
+                                                  <label for="mails-images" class="label-primary mb-1"></label>
+                                                </div>
+                                                <span class="custom-switch-indicator"></span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="p-3">
+                                            <div class="text-center">
+                                              <img src="./assets/images/media/media-66.png" alt="">
+                                              <h6 class="mt-4">This Is Not You're Looking For?</h6>
+                                              <a [routerLink]="['/pages/email/mailsettings']" class="btn btn-block btn-outline-primary">Go To Profile Settings</a>
+                                            </div>
+                                          </div>
+                                      </ng-template>
+                                    </li>
+                              </ul>
+                            </div>
+                            <div class="panel-body">
+                              <div class="tab-content" [ngbNavOutlet]="nav">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                </ng-template>
+            </li>
+            <!-- End::header-element -->
+
+            <!-- Start::header-element -->
+            <li ngbDropdown [autoClose]="'outside'" class="header-element notifications-dropdown  dropdown">
+                <!-- Start::header-link|dropdown-toggle -->
+                <a ngbDropdownToggle href="javascript:void(0);" class="header-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown">
+                    <i class="bi bi-bell header-link-icon"></i>
+                    <span class="header-icon-pulse bg-warning rounded pulse"></span>
+                </a>
+                <div ngbDropdownMenu class="main-header-dropdown dropdown-menu dropdown-menu-end" data-popper-placement="none">
+                    <div class="p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="mb-0 fs-16">Notifications</p>
+                            <span class="badge bg-secondary-transparent" id="notifiation-data">{{ notificationCount }} Unread</span>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <ngx-simplebar>
+                    <ul (click)="handleCardClick($event)" class="list-unstyled mb-0" id="header-notification-scroll">
+                        <li class="dropdown-item" id="row1">
+                            <div class="d-flex align-items-center">
+                                 <div class="pe-2 lh-1">
+                                     <span class="avatar avatar-rounded">
+                                        <img src="./assets/images/faces/6.jpg" alt="">
+                                     </span>
+                                 </div>
+                                 <div class="flex-grow-1 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-0 fw-medium"><a [routerLink]="['/pages/notifications']">Jessica Lily</a></p>
+                                        <span class="text-muted fw-normal fs-12 header-notification-text">Reminder to complete your weekly tasks</span>
+                                    </div>
+                                    <div>
+                                        <a (click)="removeNotify('row1')" href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="bi bi-x fs-16"></i></a>
+                                    </div>
+                                 </div>
+                            </div>
+                        </li>
+                        <li class="dropdown-item" id="row2">
+                            <div class="d-flex align-items-center">
+                                 <div class="pe-2 lh-1">
+                                     <span class="avatar bg-success-transparent avatar-rounded">
+                                        <i class="ri-arrow-left-down-fill fs-18"></i>
+                                     </span>
+                                 </div>
+                                 <div class="flex-grow-1 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-0 fw-medium"><a [routerLink]="['/pages/notifications']">Payment Received</a></p>
+                                        <span class="text-muted fw-normal fs-12 header-notification-text">You've been paid for freelance project.</span>
+                                    </div>
+                                    <div>
+                                        <a (click)="removeNotify('row2')" href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="bi bi-x"></i></a>
+                                    </div>
+                                 </div>
+                            </div>
+                        </li>
+                        <li class="dropdown-item" id="row3">
+                            <div class="d-flex align-items-center">
+                                 <div class="pe-2 lh-1">
+                                     <span class="avatar bg-secondary-transparent avatar-rounded">
+                                        <img src="./assets/images/faces/23.jpg" alt="">
+                                     </span>
+                                 </div>
+                                 <div class="flex-grow-1 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-0 fw-medium"><a [routerLink]="['/pages/notifications']">New Message</a></p>
+                                        <span class="text-muted fw-normal fs-12 header-notification-text">You've received a new message from a friend.</span>
+                                    </div>
+                                    <div>
+                                        <a (click)="removeNotify('row3')" href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="bi bi-x"></i></a>
+                                    </div>
+                                 </div>
+                            </div>
+                        </li>
+                        <li class="dropdown-item" id="row4">
+                            <div class="d-flex align-items-center">
+                                 <div class="pe-2 lh-1">
+                                     <span class="avatar bg-info-transparent avatar-rounded"><i class="ri-calendar-schedule-line fs-18"></i></span>
+                                 </div>
+                                 <div class="flex-grow-1 d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <p class="mb-0 fw-medium"><a [routerLink]="['/pages/notifications']">Appointment Confirmed</a></p>
+                                        <span class="text-muted fw-normal fs-12 header-notification-text">Your appointment for next week has been confirmed.</span>
+                                    </div>
+                                    <div>
+                                        <a (click)="removeNotify('row4')" href="javascript:void(0);" class="min-w-fit-content text-muted me-1 dropdown-item-close1"><i class="bi bi-x"></i></a>
+                                    </div>
+                                 </div>
+                            </div>
+                        </li>
+                    </ul>
+                </ngx-simplebar>
+                @if (!isNotifyEmpty) {
+                    <div class="p-3 empty-header-item1 border-top">
+                        <div class="text-center">
+                            <a [routerLink]="['/pages/notifications']" class="link-primary text-decoration-underline">View All</a>
+                        </div>
+                    </div>
+                }
+                    <div class="p-5 empty-item1 d-none" [class.d-none]="!isNotifyEmpty">
+                        <div class="text-center">
+                            <span class="avatar avatar-xl avatar-rounded bg-secondary-transparent">
+                                <i class="bi bi-bell-slash fs-2"></i>
+                            </span>
+                            <h6 class="fw-medium mt-3">No New Notifications</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- End::main-header-dropdown -->
+            </li>
+            <!-- End::header-element -->
+
+            <!-- Start::header-element -->
+            <li ngbDropdown class="header-element dropdown">
+                <!-- Start::header-link|dropdown-toggle -->
+                <a ngbDropdownToggle href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    <div  class="d-flex align-items-center">
+                        <div>
+                            <img src="./assets/images/faces/22.jpg" alt="img" class="avatar avatar-sm rounded-0">
+                        </div>
+                    </div>
+                </a>
+                <!-- End::header-link|dropdown-toggle -->
+                <ul ngbDropdownMenu class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end" aria-labelledby="mainHeaderProfile">
+                    <li><a class="dropdown-item d-flex align-items-center" [routerLink]="['/pages/profile']"><i class="bi bi-person fs-18 me-2 op-7"></i>Profile</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" [routerLink]="['/pages/email/mailapp']"><i class="bi bi-envelope fs-16 me-2 op-7"></i>Inbox <span class="ms-auto badge bg-info">17</span></a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" [routerLink]="['/pages/todolist']"><i class="bi bi-check-square fs-16 me-2 op-7"></i>Task Manager</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" [routerLink]="['/pages/email/mailsettings']"><i class="bi bi-gear fs-16 me-2 op-7"></i>Settings</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" [routerLink]="['/pages/chat']"><i class="bi bi-headset fs-18 me-2 op-7"></i>Support</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center" [routerLink]="['/authentication/sign-in/cover']"><i class="bi bi-box-arrow-right fs-18 me-2 op-7"></i>Log Out</a></li>
+                </ul>
+            </li>  
+            <!-- End::header-element -->
+
+            <!-- Start::header-element -->
+            <li class="header-element">
+                <!-- Start::header-link|switcher-icon -->
+                <a (click)="toggleSwitcher()" href="javascript:void(0);" class="header-link switcher-icon" data-bs-toggle="offcanvas" data-bs-target="#switcher-canvas">
+                    <i class="bi bi-gear header-link-icon border-0"></i>
+                </a>
+                <!-- End::header-link|switcher-icon -->
+            </li>
+            <!-- End::header-element -->
+
+        </ul>
+        <!-- End::header-content-right -->
+
+    </div>
+    <!-- End::main-header-container -->
+
+</header>
+<!-- /app-header -->

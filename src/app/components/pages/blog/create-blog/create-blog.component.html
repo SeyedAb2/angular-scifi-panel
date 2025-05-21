@@ -1,0 +1,234 @@
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xxl-8 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="card custom-card">
+          <div class="top-left"></div>
+          <div class="top-right"></div>
+          <div class="bottom-left"></div>
+          <div class="bottom-right"></div>
+          <div class="card-header">
+              <div class="card-title">New Blog</div>
+          </div>
+          <div class="card-body">
+              <div class="row gy-3">
+                  <div class="col-xl-12">
+                      <label for="blog-title" class="form-label">Blog Title</label>
+                      <input type="text" class="form-control" id="blog-title" placeholder="Blog Title">
+                  </div>
+                  <div class="col-xl-12">
+                      <label for="blog-category" class="form-label">Blog Category</label>
+                      <ng-select [items]="simpleItems" [(ngModel)]="selectedSimpleItem">
+                    </ng-select>
+                  </div>
+                  <div class="col-xl-6">
+                      <label for="blog-author" class="form-label">Blog Author</label>
+                      <input type="text" class="form-control" id="blog-author" placeholder="Enter Name">
+                  </div>
+                  <div class="col-xl-6">
+                      <label for="blog-author-email" class="form-label">Email</label>
+                      <input type="text" class="form-control" id="blog-author-email" placeholder="Enter Email">
+                  </div>
+                  <div class="col-xl-12">
+                      <label class="form-label">Blog Content</label>
+                      <div id="blog-content">
+                        <angular-editor [(ngModel)]="htmlContent" [config]="config">
+                        </angular-editor>
+                      </div>
+                  </div>
+                  <div class="col-xl-12 blog-images-container">
+                      <label for="blog-author-email" class="form-label">Blog Images</label>
+                      <file-pond
+                      #myPond
+                      [options]="pondOptions"
+                      class="blog-images"
+                      [files]="pondFiles"
+                      (oninit)="pondHandleInit()"
+                      (onaddfile)="pondHandleAddFile($event)"
+                      (onactivatefile)="pondHandleActivateFile($event)"
+                      >
+                    </file-pond>
+                  </div>
+                  <div class="col-xl-12">
+                      <label class="form-label">Blog Type</label>
+                      <div class="d-flex align-items-center">
+                          <div class="form-check me-3">
+                              <input class="form-check-input" type="radio" name="blog-type" id="blog-free1" checked>
+                              <label class="form-check-label" for="blog-free1">
+                                  Free
+                              </label>
+                          </div>
+                          <div class="form-check">
+                              <input class="form-check-input" type="radio" name="blog-type" id="blog-paid1">
+                              <label class="form-check-label" for="blog-paid1">
+                                  Paid
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-6">
+                      <label for="publish-date" class="form-label">Publish Date</label>
+                      <input type="text" class="form-control" id="publish-date" placeholder="Choose date"   mwlFlatpickr
+                      [(ngModel)]="selecteddate"
+                      [altInput]="true"
+                      [convertModelValue]="true">
+                  </div>
+                  <div class="col-xl-6">
+                      <label for="publish-time" class="form-label">Publish Time</label>
+                      <input type="text" class="form-control" id="publish-time" placeholder="Choose time"  mwlFlatpickr
+                      [(ngModel)]="selectedTime"
+                      [enableTime]="true"
+                      [noCalendar]="true"
+                      [dateFormat]="'H:i'">
+                  </div>
+                  <div class="col-xl-6">
+                      <label for="product-status-add" class="form-label">Published Status</label>
+                      <ng-select [items]="simpleItems1" [(ngModel)]="selectedSimpleItem1">
+                    </ng-select>
+                  </div>
+                  <div class="col-xl-6">
+                      <label for="blog-tags" class="form-label">Blog Tags</label>
+                      <ng-select [multiple]="true" [hideSelected]="true" [(ngModel)]="selectedBlogs">
+                        @for (Blog of Blogs; track Blog) {
+                          <ng-option [value]="Blog.id">{{
+                            Blog.name
+                          }}</ng-option>
+                        }
+                      </ng-select>
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer">
+              <div class="btn-list text-end">
+                  <button type="button" class="btn btn-sm btn-primary-light">Save As Draft</button>
+                  <button type="button" class="btn btn-sm btn-primary">Post Blog</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="card custom-card">
+          <div class="top-left"></div>
+          <div class="top-right"></div>
+          <div class="bottom-left"></div>
+          <div class="bottom-right"></div>
+          <div class="card-header">
+              <div class="card-title">
+                  Recent Blogs
+              </div>
+          </div>
+          <div class="card-body">
+              <ul class="list-group">
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-start">
+                          <span class="avatar avatar-xxl me-3 flex-shrink-0">
+                              <img src="./assets/images/media/media-39.jpg" class="img-fluid" alt="...">
+                          </span>
+                          <div class="flex-fill my-auto">
+                              <a href="javascript:void(0);" class="fs-10 fw-medium mb-2 text-primary badge bg-primary-transparent">Travelling</a>
+                              <p class="mb-1">
+                                  There are many variations of passages...
+                              </p>
+                              <span class="text-muted fs-11"> <i class="fe fe-calendar"></i> 20,Oct 2023 - <i class="fe fe-clock"></i> 03:34</span>
+                          </div>
+                          <a href="javascript:void(0);" class="ms-auto fs-12 text-decoration-underline text-primary text-end align-self-end">View</a>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-start">
+                          <span class="avatar avatar-xxl me-3 flex-shrink-0">
+                              <img src="./assets/images/media/media-54.jpg" class="img-fluid" alt="...">
+                          </span>
+                          <div class="flex-fill my-auto">
+                              <a href="javascript:void(0);" class="fs-10 fw-medium mb-2 text-primary badge bg-primary-transparent">Photography</a>
+                              <p class="mb-1">
+                                  There are many variations of passages...
+                              </p>
+                              <span class="text-muted fs-11"> <i class="fe fe-calendar"></i> 12,Nov 2023 - <i class="fe fe-clock"></i> 14:05</span>
+                          </div>
+                          <a href="javascript:void(0);" class="ms-auto fs-12 text-decoration-underline text-primary text-end align-self-end">View</a>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-start">
+                          <span class="avatar avatar-xxl me-3 flex-shrink-0">
+                              <img src="./assets/images/media/media-25.jpg" class="img-fluid" alt="...">
+                          </span>
+                          <div class="flex-fill my-auto">
+                              <a href="javascript:void(0);" class="fs-10 fw-medium mb-2 text-primary badge bg-primary-transparent">Flowers</a>
+                              <p class="mb-1">
+                                  There are many variations of passages...
+                              </p>
+                              <span class="text-muted fs-11"> <i class="fe fe-calendar"></i> 05,Dec 2023 - <i class="fe fe-clock"></i> 20:00</span>
+                          </div>
+                          <a href="javascript:void(0);" class="ms-auto fs-12 text-decoration-underline text-primary text-end align-self-end">View</a>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-start">
+                          <span class="avatar avatar-xxl me-3 flex-shrink-0">
+                              <img src="./assets/images/media/media-52.jpg" class="img-fluid" alt="...">
+                          </span>
+                          <div class="flex-fill my-auto">
+                              <a href="javascript:void(0);" class="fs-10 fw-medium mb-2 text-primary badge bg-primary-transparent"> Light Energy</a>
+                              <p class="mb-1">
+                                  There are many variations of passages...
+                              </p>
+                              <span class="text-muted fs-11"> <i class="fe fe-calendar"></i> 01,Jan 2024 - <i class="fe fe-clock"></i> 08:20</span>
+                          </div>
+                          <a href="javascript:void(0);" class="ms-auto fs-12 text-decoration-underline text-primary text-end align-self-end">View</a>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-start">
+                          <span class="avatar avatar-xxl me-3 flex-shrink-0">
+                              <img src="./assets/images/media/media-74.jpg" class="img-fluid" alt="...">
+                          </span>
+                          <div class="flex-fill my-auto">
+                              <a href="javascript:void(0);" class="fs-10 fw-medium mb-2 text-primary badge bg-primary-transparent"> Sports</a>
+                              <p class="mb-1">
+                                  There are many variations of passages...
+                              </p>
+                              <span class="text-muted fs-11"> <i class="fe fe-calendar"></i> 11,Jan 2024 - <i class="fe fe-clock"></i> 21:12</span>
+                          </div>
+                          <a href="javascript:void(0);" class="ms-auto fs-12 text-decoration-underline text-primary text-end align-self-end">View</a>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-start">
+                          <span class="avatar avatar-xxl me-3 flex-shrink-0">
+                              <img src="./assets/images/media/media-49.jpg" class="img-fluid" alt="...">
+                          </span>
+                          <div class="flex-fill my-auto">
+                              <a href="javascript:void(0);" class="fs-10 fw-medium mb-2 text-primary badge bg-primary-transparent">Food</a>
+                              <p class="mb-1">
+                                  There are many variations of passages...
+                              </p>
+                              <span class="text-muted fs-11"> <i class="fe fe-calendar"></i> 08,Jan 2024 - <i class="fe fe-clock"></i> 05:16</span>
+                          </div>
+                          <a href="javascript:void(0);" class="ms-auto fs-12 text-decoration-underline text-primary text-end align-self-end">View</a>
+                      </div>
+                  </li>
+                  <li class="list-group-item">
+                      <div class="d-flex align-items-start">
+                          <span class="avatar avatar-xxl me-3 flex-shrink-0">
+                              <img src="./assets/images/media/media-76.jpg" class="img-fluid" alt="...">
+                          </span>
+                          <div class="flex-fill my-auto">
+                              <a href="javascript:void(0);" class="fs-10 fw-medium mb-2 text-primary badge bg-primary-transparent"> Beauty</a>
+                              <p class="mb-1">
+                                  There are many variations of passages...
+                              </p>
+                              <span class="text-muted fs-11"> <i class="fe fe-calendar"></i> 20,Jan 2024 - <i class="fe fe-clock"></i> 14:39</span>
+                          </div>
+                          <a href="javascript:void(0);" class="ms-auto fs-12 text-decoration-underline text-primary text-end align-self-end">View</a>
+                      </div>
+                  </li>
+                  <li class="list-group-item text-center">
+                      <button class="btn btn-primary-light">Load more</button>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+<!--End::row-1 -->

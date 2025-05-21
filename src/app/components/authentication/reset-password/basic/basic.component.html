@@ -1,0 +1,61 @@
+<div class="authentication-background">
+    <div class="container-lg">
+        <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
+            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
+                <div class="card custom-card my-4">
+                    <div class="top-left"></div>
+                    <div class="top-right"></div>
+                    <div class="bottom-left"></div>
+                    <div class="bottom-right"></div>
+                    <div class="card-body p-5">
+                        <div class="mb-3 d-flex justify-content-center">
+                            <a [routerLink]="['/dashboards/gaming']" >
+                                <img src="./assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
+                                <img src="./assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+                            </a>
+                        </div>
+                        <p class="h5 mb-2 text-center">Reset Password</p>
+                        <p class="mb-4 text-muted op-7 fw-normal text-center fs-14">Hello Anthony!</p>
+                        <div class="row gy-3">
+                            <div class="col-xl-12">
+                                <label for="reset-password" class="form-label text-default">Current Password</label>
+                                <div class="position-relative">
+                                    <input [type]="showPassword ? 'text' : 'password'" type="password" class="form-control create-password-input" id="reset-password" placeholder="current password">
+                                    <a href="javascript:void(0);" class="show-password-button text-muted"  (click)="togglePassword()" id="button-addon2"><i class="{{toggleClass}} align-middle"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <label for="reset-newpassword" class="form-label text-default">New Password</label>
+                                <div class="position-relative">
+                                    <input [type]="showPassword1 ? 'text' : 'password'" type="password" class="form-control create-password-input" id="reset-newpassword" placeholder="new password">
+                                    <a href="javascript:void(0);" class="show-password-button text-muted" (click)="togglePassword1()" id="button-addon21"><i class="{{toggleClass1}} align-middle"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 mb-2">
+                                <label for="reset-confirmpassword" class="form-label text-default">Confirm Password</label>
+                                <div class="position-relative">
+                                    <input [type]="showPassword2 ? 'text' : 'password'" type="password" class="form-control create-password-input" id="reset-confirmpassword" placeholder="confirm password">
+                                    <a href="javascript:void(0);" class="show-password-button text-muted"  (click)="togglePassword2()" id="button-addon22"><i class="{{toggleClass2}} align-middle"></i></a>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                        <label class="form-check-label text-muted fw-normal" for="defaultCheck1">
+                                            Remember Me ?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <a [routerLink]="['/authentication/sign-in/basic']"  class="btn btn-primary">Create</a>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-muted mt-3">Remembered your password? <a [routerLink]="['/authentication/sign-in/basic']"  class="text-primary">Sign In</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

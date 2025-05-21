@@ -1,0 +1,192 @@
+ <!-- Start::row-1 -->
+ <div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header d-flex align-items-center justify-content-between flex-wrap gap-3 pb-3">
+                <div class="card-title">
+                    Leads<span class="badge bg-light text-default rounded ms-1 fs-12 align-middle">30</span>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button (click)="openWindowCustomClass(content)" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#create-contact"><i class="ri-add-line me-1 fw-medium align-middle"></i>Create Lead</button>
+                    <button class="btn btn-success-light btn-sm">Export As CSV</button>
+                    <div ngbDropdown class="dropdown">
+                        <a ngbDropdownToggle href="javascript:void(0);" class="btn btn-light btn-sm btn-wave waves-effect waves-light no-caret" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sort By<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
+                        </a>
+                        <ul ngbDropdownMenu class="dropdown-menu dropdown-menu-end" role="menu">
+                            <li><a class="dropdown-item" href="javascript:void(0);">Newest</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0);">Date Added</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0);">A - Z</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table text-nowrap border-top">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                                </th>
+                                <th scope="col">Contact Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Lead Status</th>
+                                <th scope="col">Company</th>
+                                <th scope="col">Lead Source</th>
+                                <th scope="col">Tags</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(data of InvoiceData;track $index){
+                            <tr class="crm-contact">
+                                <td>
+                                    <input class="form-check-input" type="checkbox" id="checkboxNoLabel1" value="" aria-label="...">
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="lh-1">
+                                            <span class="avatar avatar-rounded avatar-sm">
+                                                <img src="{{data.img}}" alt="">
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span class="d-block fw-medium">{{data.name}}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span class="d-block mb-1"><i class="ri-mail-line me-2 align-middle fs-14 text-muted d-inline-block"></i>{{data.mail}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span class="d-block"><i class="ri-phone-line me-2 align-middle fs-14 text-muted"></i>{{data.Phone}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-default">{{data.Status}}</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="lh-1">
+                                            <span class="avatar avatar-sm p-1 bg-primary-transparent avatar-rounded">
+                                                <img src="{{data.logo}}" alt="">
+                                            </span>
+                                        </div>
+                                        <div>{{data.Company}}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{data.Source2}}
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center flex-nowrap gap-1">
+                                        <span class="badge bg-{{data.tagbg1}}">{{data.tag1}}</span>
+                                        <span class="badge bg-{{data.tagbg2}}">{{data.tag2}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="btn-list">
+                                        <a class="btn btn-sm btn-warning-light btn-icon"><i class="ri-eye-line"></i></a>
+                                        <button class="btn btn-sm btn-info-light btn-icon"><i class="ri-pencil-line"></i></button>
+                                        <button (click)="DeleteClick(data.name)" class="btn btn-sm btn-danger-light btn-icon contact-delete"><i class="ri-delete-bin-line"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer border-block-start-0">
+                <div class="d-flex align-items-center">
+                    <div>
+                        Showing 10 Entries <i class="bi bi-arrow-right ms-2 fw-medium"></i>
+                    </div>
+                    <div class="ms-auto">
+                        <nav aria-label="Page navigation" class="pagination-style-4">
+                            <ul class="pagination mb-0">
+                                <ngb-pagination [collectionSize]="30" (page)="1" aria-label="Custom pagination">
+                                    <ng-template ngbPaginationPrevious>Prev</ng-template>
+                                    <ng-template ngbPaginationNext>Next</ng-template>
+                                </ngb-pagination>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->
+
+<!-- Start:: Create Contact -->
+
+<ng-template #content let-modal>
+            <div class="modal-header">
+                <h6 class="modal-title">Create Lead</h6>
+                <button  (click)="modal.dismiss('Cross click')" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-4">
+                <div class="row gy-3">
+                    <div class="col-xl-12">
+                        <div class="mb-0 text-center">
+                            <span class="avatar avatar-xxl avatar-rounded">
+                                <img    [src]="url1 ? url1 : './assets/images/faces/9.jpg'" alt="" id="profile-img">
+                                <span class="badge rounded-pill bg-primary avatar-badge">
+                                    <input (change)="handleFileInput($event)" type="file" name="photo" class="position-absolute w-100 h-100 op-0" id="profile-change">
+                                    <i class="fe fe-camera"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <label for="contact-name" class="form-label">Contact Name</label>
+                        <input type="text" class="form-control" id="contact-name" placeholder="Contact Name">
+                    </div>
+                    <div class="col-xl-12">
+                        <label for="contact-mail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="contact-mail" placeholder="Enter Email">
+                    </div>
+                    <div class="col-xl-12">
+                        <label for="contact-phone" class="form-label">Phone No</label>
+                        <input type="tel" class="form-control" id="contact-phone" placeholder="Enter Phone Number">
+                    </div>
+                    <div class="col-xl-12">
+                        <label for="company-name" class="form-label">Company Name</label>
+                        <input type="text" class="form-control" id="company-name" placeholder="Company Name">
+                    </div>
+                    <div class="col-xl-12">
+                        <label class="form-label">Lead Status</label>
+                        <ng-select [items]="simpleItems" [(ngModel)]="selectedSimpleItem">
+                        </ng-select>
+                    </div>
+                    <div class="col-xl-12">
+                        <label class="form-label">Lead Source</label>
+                        <ng-select [items]="simpleItems1" [(ngModel)]="selectedSimpleItem1">
+                        </ng-select>
+                    </div>
+                    <div class="col-xl-12">
+                        <label class="form-label">Tags</label>
+                        <ng-select [multiple]="true" [items]="simpleItems2" [(ngModel)]="selectedSimpleItem2">
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button   (click)="modal.close('Close click')" type="button" class="btn btn-light"
+                    data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Create Contact</button>
+            </div>
+       </ng-template>
+<!-- End:: Create Contact -->

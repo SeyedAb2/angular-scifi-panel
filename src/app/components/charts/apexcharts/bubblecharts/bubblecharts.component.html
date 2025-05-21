@@ -1,0 +1,49 @@
+<!-- Start::row-1 -->
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">Simple Bubble Chart</div>
+            </div>
+            <div class="card-body">
+                <div id="bubble-simple">
+                    <!--The content below is only a placeholder and can be replaced.-->
+                    <div id="chart">
+                        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [colors]="chartOptions.colors"
+                            [xaxis]="chartOptions.xaxis" [fill]="chartOptions.fill"
+                            [dataLabels]="chartOptions.dataLabels" [title]="chartOptions.title"
+                            [yaxis]="chartOptions.yaxis"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-header">
+                <div class="card-title">3D Bubble Chart</div>
+            </div>
+            <div class="card-body">
+                <div id="bubble-3d">
+                    <!--The content below is only a placeholder and can be replaced.-->
+                    <div id="chart">
+                        <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [colors]="chartOptions1.colors"
+                            [xaxis]="chartOptions1.xaxis" [fill]="chartOptions1.fill"
+                            [dataLabels]="chartOptions1.dataLabels" [title]="chartOptions1.title"
+                            [yaxis]="chartOptions1.yaxis" [tooltip]="chartOptions1.tooltip"
+                            [theme]="chartOptions1.theme"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->

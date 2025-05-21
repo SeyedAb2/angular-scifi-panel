@@ -1,0 +1,144 @@
+/* You can add global styles to this file, and also import other style files */
+/* Custom assets Link Start */
+
+@import url('./assets/scss/bootstrap.scss');
+// -- Style Css --
+@import url("./assets/css/styles.css");
+// -- Icons Css --
+@import url("./assets/css/icons.css");
+
+//plugin css links
+
+//ng2-nouislider
+@import "../node_modules/nouislider/dist/nouislider.css";
+//ng2-nouislider
+@import "../node_modules/intl-tel-input/build/css/intlTelInput.css";
+
+@import "../node_modules/filepond/dist/filepond.min.css";
+
+
+//flatepicker
+@import url("../node_modules/flatpickr/dist/flatpickr.css");
+
+@import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+
+//angular calendar
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+// angular material
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import "../node_modules/ngx-toastr/toastr.css";
+
+@import '../node_modules/ngx-easy-table/style.css';
+
+@import "../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+
+@import "../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+// font awesome
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+@import "../node_modules/dragula/dist/dragula.css";
+
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
+
+//ngx-easy-table styless
+.table[_ngcontent-ng-c283474303] > [_ngcontent-ng-c283474303]:not(:last-child) > [_ngcontent-ng-c283474303]:last-child > *[_ngcontent-ng-c283474303] {
+    border-bottom-color: var(--default-border) !important;
+  }
+  .ngx-table__table--normal>tbody>tr>td, .ngx-table__table--normal>thead>tr>th, .ngx-pagination li {
+    border-color: var(--default-border) !important;
+  }
+  .ngx-table {
+    color: var(--default-text-color) !important;
+  }
+  .ngx-table__table--hoverable>tbody tr:hover {
+    background: var(--black-1) !important;
+  }
+  .ngx-pagination a:hover, .ngx-pagination button:hover,
+  .ngx-pagination-range--selected {
+    background: var(--black-1) !important;
+  }
+  .ngx-menu {
+    background: var(--custom-white) !important;
+    border-color: var(--default-border) !important;
+    padding-inline-start: 0;
+  }
+  .ngx-pagination-range-dropdown {
+    min-width: 60px;
+  }
+  .ngx-pagination-range-dropdown-button,
+  .ngx-pagination-range-dropdown-button-item {
+    color: var(--default-text-color) !important;
+    border-color: var(--default-border) !important;
+  }
+  .ngx-icon {
+    margin-inline-start: 11px;
+  }
+  .basic__dataTable {
+    .pagination {
+      margin-block-end: 0;
+    }
+  }
+  .mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8 {
+    box-shadow: none !important;
+  }
+  .mat-mdc-header-row, .mat-mdc-row {
+    color: var(--default-text-color) !important;
+  
+  }
+  .mat-mdc-table {
+    background-color: var(--default-background) !important;
+  }
+  [data-theme-mode="dark"] {
+    .mat-mdc-table {
+      background-color: rgb(255 255 255 / 10%) !important;
+  }
+
+  }
+  .table-invoice.table[_ngcontent-ng-c369838808] > [_ngcontent-ng-c369838808]:not(:last-child) > [_ngcontent-ng-c369838808]:last-child > *[_ngcontent-ng-c369838808] {
+    border-bottom-color: var(--default-border) !important;
+  }
+  .product-details {
+    .table[_ngcontent-ng-c1357423700] > [_ngcontent-ng-c1357423700]:not(:last-child) > [_ngcontent-ng-c1357423700]:last-child > *[_ngcontent-ng-c1357423700] {
+      border-bottom-color: var(--default-border) !important;
+    }
+  }
+  .table-responsive[_ngcontent-ng-c3635505178] {
+    overflow-x: auto !important;
+  }
+  .mat-mdc-cell {
+    border-color: var(--default-border) !important;
+  }
+  .ngx-dropdown .ngx-menu {
+    top: -170px !important;
+}
+
+//dragable-cards
+.dragablecards{
+  .cdk-drag {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+.switcher {
+  .offcanvas-body{
+    height: 100vh;
+    padding-bottom: 8.75rem !important;
+  }
+}
+@media (min-width:992px) {
+  [data-nav-layout="horizontal"][data-nav-style="menu-hover"],
+  [data-nav-layout="horizontal"][data-nav-style="icon-hover"] {
+    .app-sidebar .slide.has-sub .slide-menu.child1 {  
+      inset-inline-start: auto !important;
+    }
+  }
+}
+#ngb-nav-3-panel .simplebar-placeholder {
+  height: 35rem !important;
+}

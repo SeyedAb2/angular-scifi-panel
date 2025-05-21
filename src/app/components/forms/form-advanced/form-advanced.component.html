@@ -1,0 +1,276 @@
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="top-left"></div>
+      <div class="top-right"></div>
+      <div class="bottom-left"></div>
+      <div class="bottom-right"></div>
+      <div class="card-header">
+        <div class="card-title">Auto Complete</div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xxl-5 mb-3 mb-xxl-0">
+            <label for="autoComplete" class="form-label"
+              >Search Results Of Food & Drinks Combo</label
+            >
+            <div
+              class="autoComplete_wrapper"
+              role="combobox"
+              aria-owns="autoComplete_list_1"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <ng-select
+                class=""
+                aria-label="Default select example"
+                placeholder="Search for Food &amp; Drinks Combo"
+              >
+                <ng-option value="1">Pizza, Soda</ng-option>
+                <ng-option value="2">Burger, Milkshake</ng-option>
+                <ng-option value="3">Tacos, Margarita</ng-option>
+                <ng-option value="4">Pasta, Red Wine</ng-option>
+                <ng-option value="5">Sushi, Green Tea</ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-xxl-4">
+            <label for="autoComplete-color" class="form-label"
+              >Advanced Search Results For Colors</label
+            >
+            <ng-select
+              class="autoComplete_wrapper"
+              placeholder="Search For Advanced Colors..."
+              #select
+              [items]="cities"
+              [searchable]="false"
+              [(ngModel)]="selectedCity"
+              name="selectedCity"
+              bindLabel="name"
+              bindValue="name"
+            >
+              <ng-template ng-header-tmp>
+                <input
+                  style="width: 100%; line-height: 24px"
+                  type="text"
+                  (input)="select.filter($any($event.target).value)"
+                />
+              </ng-template>
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->
+<!-- Start:: row-2 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="top-left"></div>
+      <div class="top-right"></div>
+      <div class="bottom-left"></div>
+      <div class="bottom-right"></div>
+      <div class="card-header">
+        <div class="card-title">Telephone Input</div>
+      </div>
+      <div class="card-body">
+        <div class="row gy-4">
+          <div class="col-xxl-3 col-xl-6 basic-telephone-input">
+            <label for="phone" class="form-label d-block"
+              >Basic Telephone Input</label
+            >
+            <form [formGroup]="myForm" (ngSubmit)="submitPhone()">
+              <div class="form-width">
+                <mat-form-field appearance="outline">
+                  <ngx-mat-intl-tel-input
+                    formControlName="phone"
+                    [preferredCountries]="['de', 'us']"
+                    [enablePlaceholder]="true"
+                    [enableSearch]="true"
+                    name="phone"
+                    #phone
+                  >
+                  </ngx-mat-intl-tel-input>
+                </mat-form-field>
+              </div>
+            </form>
+          </div>
+          <div class="col-xxl-5 col-xl-6">
+            <label for="phone-validation" class="form-label d-block"
+              >Telephone Input with validation</label
+            >
+            <form [formGroup]="myForm" (ngSubmit)="submitPhone()">
+              <mat-form-field appearance="outline">
+                <ngx-mat-intl-tel-input
+                  formControlName="phone"
+                  id="phone-validation"
+                  [preferredCountries]="['de', 'us']"
+                  class="form-control me-2"
+                  [enablePlaceholder]="true"
+                  [enableSearch]="true"
+                  name="phone"
+                  #phone
+                >
+                </ngx-mat-intl-tel-input>
+              </mat-form-field>
+              <div class="m-t-10">
+                <button
+                  mat-raised-button
+                  id="btn"
+                  type="button"
+                  class="btn btn-primary btn-wave"
+                >
+                  Validate
+                </button>
+              </div>
+              @if(phoneNumber){
+              <div class="m-t-10">Entered Phone number : {{ phoneNumber }}</div>
+              } @if(phoneValue.touched &&phoneValue.invalid){
+              <div id="error-msg" class="m-t-10 error">
+                phone number invalid
+              </div>
+              }
+            </form>
+          </div>
+          <div class="col-xxl-4 col-xl-6">
+            <label for="phone-existing-number" class="form-label d-block"
+              >Display Existing Number</label
+            >
+            <form [formGroup]="myForm">
+              <div class="form-width">
+                <mat-form-field appearance="outline">
+                  <ngx-mat-intl-tel-input
+                    class="form-control"
+                    id="phone-existing-number"
+                    formControlName="phone"
+                    [enablePlaceholder]="true"
+                    [enableSearch]="true"
+                    name="phone"
+                    #phone
+                  >
+                  </ngx-mat-intl-tel-input>
+                </mat-form-field>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-2 -->
+
+<!-- Start:: row-3 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="top-left"></div>
+      <div class="top-right"></div>
+      <div class="bottom-left"></div>
+      <div class="bottom-right"></div>
+      <div class="card-header">
+        <div class="card-title">Dual List Box</div>
+      </div>
+      <div class="card-body">
+        <div class="row gy-4">
+          <dual-list
+            [sort]="keepSorted"
+            [source]="source"
+            [key]="key"
+            [display]="display"
+            [filter]="filter"
+            [(destination)]="confirmed"
+            height="265px"
+            [format]="format"
+            [disabled]="disabled"
+          ></dual-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-3 -->
+
+<!-- Start:: row-4 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="top-left"></div>
+      <div class="top-right"></div>
+      <div class="bottom-left"></div>
+      <div class="bottom-right"></div>
+      <div class="card-header">
+        <div class="card-title">Tagify Js</div>
+      </div>
+      <div class="card-body">
+        <div class="row gy-3">
+          <div class="col-xl-6">
+            <label class="form-label d-block">Basic Tagify</label>
+            <ng-select
+              class=""
+              [items]="[]"
+              [addTag]="true"
+              [multiple]="true"
+              [selectOnTab]="true"
+              [isOpen]="false"
+              id="choices-multiple-groups"
+              bindLabel="name"
+              groupBy="country"
+              [(ngModel)]="selectedAccounts"
+            >
+            </ng-select>
+          </div>
+          <div class="col-xl-6">
+            <label class="form-label d-block"
+              >Tagify With Custom Suggestions</label>
+            <ng-select [items]="companies"
+           [addTag]="addTagFn"
+           [hideSelected]="true"
+           [multiple]="true"
+           bindLabel="name"
+           [(ngModel)]="selectedCompanies"
+           
+           >
+</ng-select>
+          </div>
+          <div class="col-xl-6">
+            <label class="form-label d-block">Diasbled User Input</label>
+           
+            <ng-select [items]="accounts" 
+           bindLabel="name"
+           placeholder="Select tag from the list"
+           groupBy="country"
+           [multiple]="true"
+           [hideSelected]="true"
+           [closeOnSelect]="false"
+           [selectableGroup]="true"
+           [compareWith]="compareAccounts"
+           [(ngModel)]="selectedAccounts1">
+    <ng-template ng-optgroup-tmp let-item="item">
+        {{item.country || 'Unnamed group'}}
+    </ng-template>
+</ng-select>
+          </div>
+          <div class="col-xl-6">
+            <label class="form-label d-block">Tagify Single-Value Select</label>
+            <ng-select
+            class=""
+            aria-label="Default select example"
+            placeholder="Please Select"
+          >
+            <ng-option selected>Open this select menu</ng-option>
+            <ng-option value="1">One</ng-option>
+            <ng-option value="2">Two</ng-option>
+            <ng-option value="3">Three</ng-option>
+          </ng-select>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-4 -->
