@@ -95,3 +95,36 @@
   font-size: 0.8rem;
   color: #88cc88;
 }
+
+.zoom-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border: 1px solid #444;
+  overflow: hidden;
+  background-color: #111;
+}
+
+.zoom-toolbar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+
+  button {
+    padding: 4px 8px;
+    background: #00ff80;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.zoom-wrapper {
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+  cursor: grab;
+  transition: transform 0.1s ease-out;
+}

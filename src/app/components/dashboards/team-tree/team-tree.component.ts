@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { MemberTeamCardComponent } from '../../../shared/components/basic/member-team-card/member-team-card.component';
 import { FormsModule } from '@angular/forms';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
@@ -7,6 +7,7 @@ import * as uuid from 'uuid';
 import { CommonModule } from '@angular/common';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { TreeNode } from 'primeng/api';
+
 
 
 @Component({
@@ -187,7 +188,46 @@ selectedNodes!: TreeNode[];
 toggleNode(node: any) {
   node.expanded = !node.expanded;
 }
+zoom: number = 1;
+  offsetX: number = 0;
+  offsetY: number = 0;
 
+  private isPanning = false;
+  private startX = 0;
+  private startY = 0;
+
+  @ViewChild('zoomWrapper') zoomWrapper!: ElementRef;
+
+  startPan(event: MouseEvent) {
+    this.isPanning = true;
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+  }
+
+  onPan(event: MouseEvent) {
+    if (!this.isPanning) return;
+    this.offsetX += (event.clientX - this.startX) / this.zoom;
+    this.offsetY += (event.clientY - this.startY) / this.zoom;
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+  }
+
+  endPan() {
+    this.isPanning = false;
+  }
+
+  onZoom(event: WheelEvent) {
+    event.preventDefault();
+    const zoomStep = 0.1;
+    const direction = event.deltaY < 0 ? 1 : -1;
+    this.zoom = Math.min(3, Math.max(0.3, this.zoom + direction * zoomStep));
+  }
+
+  resetZoom() {
+    this.zoom = 1;
+    this.offsetX = 0;
+    this.offsetY = 0;
+  }
 // @ViewChild('graph') graph: any;
 // animationStates: { [id: string]: 'in' | 'out' } = {};
 
