@@ -1,0 +1,97 @@
+
+.p-person {
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: #e3f2fd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+::ng-deep .p-organizationchart-line-down {
+  border-top: 2px solid #00ff80 !important;
+}
+::ng-deep .p-organizationchart-line-left {
+  border-right: 2px solid #00ff80 !important;
+}
+::ng-deep .p-organizationchart-line-right {
+  border-left: 2px solid #00ff80 !important;
+}
+::ng-deep .p-organizationchart-line-top {
+  border-top: 2px solid #00ff80 !important;
+  border-bottom: none !important;
+}
+::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-down,
+::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-left,
+::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-right,
+::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-top {
+  border-color: transparent !important;
+}
+::ng-deep{
+  tr.p-organizationchart-node-hidden{
+    td{
+      border: none !important;
+    }
+  }
+}
+::ng-deep{
+    .p-node-toggler{
+        display: none !important;
+    }
+    .p-organizationchart-node-content{
+      border: none !important;
+      background:  transparent !important;
+      padding: 0 !important;
+    }
+}
+.custom-node {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  background-color: rgba(0, 128, 0, 0.2); /* دارک سبز ترنسپرنت */
+  border: 1px solid #013b01; /* سبز کم‌رنگ */
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  min-width: 280px;
+}
+.text-blue{
+  color: #3366d5 !important;
+}
+
+.action-menu{
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-right: 20px;
+}
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-left: 10px;
+  border: 1px solid #1ca860;
+  object-fit: cover;
+}
+
+.node-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.team {
+  font-size: 0.9rem;
+  color: #b0ffb0;
+}
+
+.role {
+  font-size: 0.8rem;
+  color: #88cc88;
+}

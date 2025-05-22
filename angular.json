@@ -42,8 +42,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "/angular-scifi-panel/",
             "allowedCommonJsDependencies": [
-            "leaflet","apexcharts","sweetalert","sweetalert2","dropzone","inputmask","can-use-dom","filepond","@yaireo/tagify","moment"
+            "leaflet","apexcharts","angular-d3-tree","sweetalert","sweetalert2","dropzone","inputmask","can-use-dom","filepond","@yaireo/tagify","moment"
             ],
             "outputPath": "preview",
             "index": "src/index.html",
@@ -59,6 +60,8 @@
               "src/.htaccess"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss",
               "./node_modules/swiper/swiper-bundle.min.css",
               "./node_modules/leaflet/dist/leaflet.css"

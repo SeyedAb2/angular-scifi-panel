@@ -3,11 +3,12 @@ import { SharedModule } from '../../../shared/shared.module';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MemberTeamCardComponent } from '../../../shared/components/basic/member-team-card/member-team-card.component';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [SharedModule,SimplebarAngularModule,NgSelectModule,NgbModule],
+  imports: [SharedModule,SimplebarAngularModule,MemberTeamCardComponent,NgSelectModule,NgbModule],
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })

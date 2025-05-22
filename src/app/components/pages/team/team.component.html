@@ -34,49 +34,8 @@
         </div>
         <div class="row">
             @for (item of teamData; track $index) {
-
                 <div class="col-xxl-3 col-lg-6"> 
-                    <div class="card custom-card border rounded">
-                        <div class="top-left"></div>
-                        <div class="top-right"></div>
-                        <div class="bottom-left"></div>
-                        <div class="bottom-right"></div>
-                        <div class="card-body p-4 text-center">
-                            <span class="avatar avatar-xl team-avatar p-1 mb-3">
-                                <img [src]=item.src alt="">
-                            </span>
-                            <div class="team-member-details">
-                                <span class="mb-0 fw-medium fs-16 text-truncate d-block">
-                                    <a href="javascript:void(0);">{{item.name}}</a>
-                                </span>
-                                <span class="mb-0 fs-13 text-muted d-block">{{item.mail}}</span>
-                                <div class="btn-list mt-2">
-                                    <button class="btn btn-sm btn-icon btn-danger-light btn-wave waves-effect waves-light">
-                                        <i class="ri-facebook-line fw-bold"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-icon btn-secondary-light btn-wave waves-effect waves-light">
-                                        <i class="ri-twitter-x-line fw-bold"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-icon btn-warning-light btn-wave waves-effect waves-light">
-                                        <i class="ri-instagram-line fw-bold"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-icon btn-success-light btn-wave waves-effect waves-light">
-                                        <i class="ri-github-line fw-bold"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer border-block-start-dashed border-top text-center p-0">
-                            <div class="d-flex">
-                                <div class="text-center p-3 border-end border-inline-end-dashed flex-fill">
-                                    <a href="javascript:void(0);" class="text-secondary fs-13"><i class="ri-eye-line me-1 d-inline-block"></i> View</a>
-                                </div>
-                                <div class="text-center p-3 flex-fill">
-                                    <a href="javascript:void(0);" class="text-primary fs-13"><i class="ri-file-list-line me-1 d-inline-block"></i> Assign</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <app-member-team-card [person]="item"></app-member-team-card>
                 </div>
             }
            

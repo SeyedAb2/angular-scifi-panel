@@ -17,6 +17,10 @@ import { TableModule } from "ngx-easy-table";
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppStateService } from './shared/services/app-state.service';
 import { DragulaModule } from 'ng2-dragula';
+import Aura from '@primeng/themes/aura';
+import { AuraBaseDesignTokens } from '@primeng/themes/aura/base';
+import { Preset } from '@primeng/themes/types';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -31,8 +35,6 @@ export const appConfig: ApplicationConfig = {
     ToastrService,
     TableModule,
     NgbCollapseModule,
-    
-    
     importProvidersFrom(
       AppStateService,
       DragulaModule.forRoot(),
@@ -46,3 +48,4 @@ export const appConfig: ApplicationConfig = {
       BrowserAnimationsModule  
     ),]
 };
+

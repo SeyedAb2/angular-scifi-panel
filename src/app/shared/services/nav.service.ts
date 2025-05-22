@@ -92,6 +92,28 @@ export class NavService implements OnDestroy {
   MENUITEMS: Menu[] = [
     // Dashboard
     {
+      title: 'team-tree',
+      icon: ` <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- نفر وسط -->
+      <circle cx="32" cy="20" r="6" />
+      <path d="M24 40c0-6 16-6 16 0v4H24v-4z" />
+      
+      <!-- نفر سمت چپ -->
+      <circle cx="20" cy="24" r="4" />
+      <path d="M12 40c0-4 12-4 12 0v4H12v-4z" />
+      
+      <!-- نفر سمت راست -->
+      <circle cx="44" cy="24" r="4" />
+      <path d="M40 40c0-4 12-4 12 0v4H40v-4z" />
+    </svg>`,
+      type: 'link',
+      path: '/team-tree',
+      selected: false,
+      active: false,
+      dirchange: false,
+      children: [],
+    },
+    {
       title: 'Dashboards',
       icon: ` <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M152,208V160a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v48a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V115.54a8,8,0,0,1,2.62-5.92l80-75.54a8,8,0,0,1,10.77,0l80,75.54a8,8,0,0,1,2.62,5.92V208a8,8,0,0,1-8,8H160A8,8,0,0,1,152,208Z" opacity="0.2"/><path d="M152,208V160a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v48a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V115.54a8,8,0,0,1,2.62-5.92l80-75.54a8,8,0,0,1,10.77,0l80,75.54a8,8,0,0,1,2.62,5.92V208a8,8,0,0,1-8,8H160A8,8,0,0,1,152,208Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>`,
       type: 'sub',
