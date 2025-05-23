@@ -1,44 +1,32 @@
-<div class="zoom-container">
+<div #zoomContainer class="zoom-container">
   <div class="zoom-toolbar">
     <button (click)="resetZoom()">Reset</button>
   </div>
 
-  <div
-    #zoomWrapper
-    class="zoom-wrapper"
-    (mousedown)="startPan($event)"
-    (mousemove)="onPan($event)"
-    (mouseup)="endPan()"
-    (wheel)="onZoom($event)"
-    [ngStyle]="{
-      'transform': 'scale(' + zoom + ') translate(' + offsetX + 'px,' + offsetY + 'px)'
-    }"
-  >
-    <p-organizationChart [value]="data">
-      <ng-template let-node pTemplate="person">
-        <div class="custom-node w-100" (click)="toggleNode(node)">
-          <div class="action-menu">
-            <i class="bi bi-plus-circle-fill text-primary"></i>
-            <i class="bi bi-pencil-fill text-blue"></i>
-            <i class="bi bi-trash-fill text-danger"></i>
-          </div>
-          <div class="d-flex align-items-center position-relative">
-            <div class="node-text">
-              <div class="name">{{ node.data.name }}</div>
-              <div class="team">{{ node.data.team }}</div>
-              <div class="role">{{ node.data.role }}</div>
-            </div>
-            <div class="avatar-wrapper position-relative">
-              <img [src]="node.data.image" class="avatar" />
-              <i class="pi status-icon"
-                [ngClass]="node.expanded ? 'pi-chevron-down' : 'pi-chevron-right'">
-              </i>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </p-organizationChart>
-
+  <div class="zoom-scroll-box">
+    <div
+      
+      #zoomWrapper
+      class="zoom-wrapper"
+      (mousedown)="startPan($event)"
+      (mousemove)="onPan($event)"
+      (mouseup)="endPan()"
+      (wheel)="onZoom($event)"
+      (touchstart)="onTouchStart($event)"
+      (touchmove)="onTouchMove($event)"
+      (touchend)="endPan()"
+      [ngClass]="{ 'grabbing': isPanning }"
+      [ngStyle]="{
+        'transform': 'scale(' + zoom + ') translate(' + offsetX + 'px,' + offsetY + 'px)'
+      }"
+    >
+      <p-organizationChart [value]="data">
+        <ng-template let-node pTemplate="person">
+          <app-member-tree-card (click)="toggleNode(node)" [@expandCollapse] [person]="node.data"></app-member-tree-card>
+        </ng-template>
+      </p-organizationChart>
+  
+    </div>
   </div>
 </div>
 

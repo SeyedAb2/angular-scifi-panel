@@ -1,78 +1,88 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { MemberTeamCardComponent } from '../../../shared/components/basic/member-team-card/member-team-card.component';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgxGraphModule } from '@swimlane/ngx-graph';
-import { Node, Edge } from '@swimlane/ngx-graph';
-import * as uuid from 'uuid';
 import { CommonModule } from '@angular/common';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { TreeNode } from 'primeng/api';
-
-
+import { collapseTeamCard } from '../../../shared/animation/animation';
+import { MemberTreeCardComponent } from '../../../shared/components/basic/member-tree-card/member-tree-card.component';
 
 @Component({
   selector: 'app-team-tree',
   standalone: true,
   imports: [
-    MemberTeamCardComponent,
+    MemberTreeCardComponent,
     FormsModule,
     CommonModule,
     // NgxGraphModule,
     OrganizationChartModule
   ],
   templateUrl: './team-tree.component.html',
-  styleUrl: './team-tree.component.scss'
+  styleUrl: './team-tree.component.scss',
+  animations:[collapseTeamCard],
 })
-export class TeamTreeComponent {
-selectedNodes!: TreeNode[];
+export class TeamTreeComponent implements OnInit {
+  selectedNodes!: TreeNode[];
+  zoom: number = 1;
+  offsetX: number = 0;
+  offsetY: number = 30;
 
-    data: TreeNode[] = [
+  private pinchStartDistance: number | null = null;
+  private baseZoom = 1;
+  public isPanning = false;
+  private startX = 0;
+  private startY = 0;
+
+  @ViewChild('zoomWrapper', { static: false }) zoomWrapper!: ElementRef;
+  @ViewChild('zoomContainer', { static: false }) zoomContainer!: ElementRef;
+  private lastTouchX = 0;
+  private lastTouchY = 0;
+  data: TreeNode[] = [
   {
     expanded: true,
     type: 'person',
     data: {
-      image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+      src: 'https://img.freepik.com/free-photo/handsome-man-smiling-happy-face-portrait-close-up_53876-145493.jpg?semt=ais_hybrid&w=740',
       name: 'Amy Elsner',
       team: 'DigiKala',
-      role: 'CEO',
+      mail: 'CEO',
     },
     children: [
       {
         expanded: true,
         type: 'person',
         data: {
-          image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png',
+          src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaeI9R0-C5zVvlD8IhUOQ3-4ygvfU-S3ydO_BIsXmZUVcdGMeeKESZmrtX68cRfkhiDc&usqp=CAU',
           name: 'Anna Fali',
           team: 'Marketing',
-          role: 'CMO',
+          mail: 'CMO',
         },
         children: [
           {
             expanded: true,
             type: 'person',
             data: {
-              image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+              src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSegfqpGtTzym_EG644VzGiB5jJJWlmLKHw6Q&s',
               name: 'Jack Smith',
               team: 'Social Media',
-              role: 'Manager',
+              mail: 'Manager',
             },
             children: [
               {
                 type: 'person',
                 data: {
-                  image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+                  src: 'https://img.freepik.com/free-photo/handsome-man-smiling-happy-face-portrait-close-up_53876-145493.jpg?semt=ais_hybrid&w=740',
                   name: 'Sasha Grey',
                   team: 'Content',
-                  role: 'Writer',
+                  mail: 'Writer',
                 },
               },
               {
                 type: 'person',
                 data: {
-                  image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png',
+                  src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaeI9R0-C5zVvlD8IhUOQ3-4ygvfU-S3ydO_BIsXmZUVcdGMeeKESZmrtX68cRfkhiDc&usqp=CAU',
                   name: 'Mia Tan',
                   team: 'Content',
-                  role: 'Editor',
+                  mail: 'Editor',
                 },
               },
             ],
@@ -80,10 +90,10 @@ selectedNodes!: TreeNode[];
           {
             type: 'person',
             data: {
-              image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+              src: 'https://img.freepik.com/free-photo/handsome-man-smiling-happy-face-portrait-close-up_53876-145493.jpg?semt=ais_hybrid&w=740',
               name: 'Laura Chen',
               team: 'SEO',
-              role: 'Specialist',
+              mail: 'Specialist',
             },
           },
         ],
@@ -92,29 +102,29 @@ selectedNodes!: TreeNode[];
         expanded: true,
         type: 'person',
         data: {
-          image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+          src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSegfqpGtTzym_EG644VzGiB5jJJWlmLKHw6Q&s',
           name: 'Stephen Shaw',
           team: 'Tech',
-          role: 'CTO',
+          mail: 'CTO',
         },
         children: [
           {
             expanded: true,
             type: 'person',
             data: {
-              image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+              src: 'https://img.freepik.com/free-photo/handsome-man-smiling-happy-face-portrait-close-up_53876-145493.jpg?semt=ais_hybrid&w=740',
               name: 'Ali Rezaei',
               team: 'Backend',
-              role: 'Lead Developer',
+              mail: 'Lead Developer',
             },
             children: [
               {
                 type: 'person',
                 data: {
-                  image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png',
+                  src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaeI9R0-C5zVvlD8IhUOQ3-4ygvfU-S3ydO_BIsXmZUVcdGMeeKESZmrtX68cRfkhiDc&usqp=CAU',
                   name: 'Sara Jafari',
                   team: 'API',
-                  role: 'Developer',
+                  mail: 'Developer',
                 },
               },
             ],
@@ -122,10 +132,10 @@ selectedNodes!: TreeNode[];
           {
             type: 'person',
             data: {
-              image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png',
+              src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaeI9R0-C5zVvlD8IhUOQ3-4ygvfU-S3ydO_BIsXmZUVcdGMeeKESZmrtX68cRfkhiDc&usqp=CAU',
               name: 'Morteza Akbari',
               team: 'Frontend',
-              role: 'UI Engineer',
+              mail: 'UI Engineer',
             },
           },
         ],
@@ -134,47 +144,47 @@ selectedNodes!: TreeNode[];
         expanded: true,
         type: 'person',
         data: {
-          image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png',
+          src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaeI9R0-C5zVvlD8IhUOQ3-4ygvfU-S3ydO_BIsXmZUVcdGMeeKESZmrtX68cRfkhiDc&usqp=CAU',
           name: 'Lina Asadi',
           team: 'Operations',
-          role: 'COO',
+          mail: 'COO',
         },
         children: [
           {
             type: 'person',
             data: {
-              image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+              src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSegfqpGtTzym_EG644VzGiB5jJJWlmLKHw6Q&s',
               name: 'Hamid R.',
               team: 'Logistics',
-              role: 'Coordinator',
+              mail: 'Coordinator',
             },
           },
           {
             type: 'person',
             data: {
-              image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+              src: 'https://img.freepik.com/free-photo/handsome-man-smiling-happy-face-portrait-close-up_53876-145493.jpg?semt=ais_hybrid&w=740',
               name: 'Neda Amini',
               team: 'Support',
-              role: 'Manager',
+              mail: 'Manager',
             },
           },
           {
             expanded: true,
             type: 'person',
             data: {
-              image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/stephenshaw.png',
+              src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSegfqpGtTzym_EG644VzGiB5jJJWlmLKHw6Q&s',
               name: 'Kamran T.',
               team: 'Legal',
-              role: 'Lead',
+              mail: 'Lead',
             },
             children: [
               {
                 type: 'person',
                 data: {
-                  image: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png',
+                  src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaeI9R0-C5zVvlD8IhUOQ3-4ygvfU-S3ydO_BIsXmZUVcdGMeeKESZmrtX68cRfkhiDc&usqp=CAU',
                   name: 'Zahra Shiri',
                   team: 'Contracts',
-                  role: 'Lawyer',
+                  mail: 'Lawyer',
                 },
               },
             ],
@@ -183,20 +193,17 @@ selectedNodes!: TreeNode[];
       },
     ],
   },
-];
+  ];
 
-toggleNode(node: any) {
-  node.expanded = !node.expanded;
-}
-zoom: number = 1;
-  offsetX: number = 0;
-  offsetY: number = 0;
-
-  private isPanning = false;
-  private startX = 0;
-  private startY = 0;
-
-  @ViewChild('zoomWrapper') zoomWrapper!: ElementRef;
+  toggleNode(node: any) {
+    node.expanded = !node.expanded;
+  }
+  
+  ngOnInit(): void {
+  }
+  ngAfterViewInit() {
+    this.resetZoom()
+  }
 
   startPan(event: MouseEvent) {
     this.isPanning = true;
@@ -218,119 +225,97 @@ zoom: number = 1;
 
   onZoom(event: WheelEvent) {
     event.preventDefault();
-    const zoomStep = 0.1;
+
+    const zoomFactor = 0.1;
     const direction = event.deltaY < 0 ? 1 : -1;
-    this.zoom = Math.min(3, Math.max(0.3, this.zoom + direction * zoomStep));
+
+    const oldZoom = this.zoom;
+    this.zoom = Math.min(3, Math.max(0.3, this.zoom + direction * zoomFactor));
+
+    const rect = this.zoomWrapper.nativeElement.getBoundingClientRect();
+
+    const offsetX = (event.clientX - rect.left) / oldZoom;
+    const offsetY = (event.clientY - rect.top) / oldZoom;
+
+    this.offsetX -= offsetX * (this.zoom - oldZoom);
+    this.offsetY -= offsetY * (this.zoom - oldZoom);
   }
 
   resetZoom() {
-    this.zoom = 1;
-    this.offsetX = 0;
-    this.offsetY = 0;
+    this.zoom = 0.9;
+    this.offsetY = 30;
+
+    setTimeout(() => {
+      const container = this.zoomContainer.nativeElement as HTMLElement;
+      const content = this.zoomWrapper.nativeElement as HTMLElement;
+
+      const containerWidth = container.offsetWidth;
+      const contentWidth = content.scrollWidth;
+
+      this.offsetX = (containerWidth - contentWidth) / 2;
+    }, 0);
   }
-// @ViewChild('graph') graph: any;
-// animationStates: { [id: string]: 'in' | 'out' } = {};
 
-//   layoutSettings = {
-//     orientation: 'TB'
-//   };
+  onTouchStart(event: TouchEvent) {
+    if (event.touches.length === 1) {
+      this.isPanning = true;
+      this.lastTouchX = event.touches[0].clientX;
+      this.lastTouchY = event.touches[0].clientY;
+    } else if (event.touches.length === 2) {
+      event.preventDefault(); // 🔒 غیرفعال کردن رفتار مرورگر
+      this.isPanning = false;
+      this.pinchStartDistance = this.getDistance(event.touches[0], event.touches[1]);
+      this.baseZoom = this.zoom;
+    }
+  }
 
-//   nodes: Node[] = [];
-//   links: Edge[] = [];
-//   layout: string = 'dagre';
-//   expandedNodeIds = new Set<string>();
+  onTouchMove(event: TouchEvent) {
+    if (event.touches.length === 1 && this.isPanning) {
+      // حالت Pan با یک انگشت
+      const touch = event.touches[0];
+      const deltaX = touch.clientX - this.lastTouchX;
+      const deltaY = touch.clientY - this.lastTouchY;
 
-//   ngOnInit() {
-//     const treeData = {
-//       id: '1',
-//       label: 'مدیر',
-//       data: {
-//         name: 'مدیر عامل',
-//         email: 'boss@example.com',
-//         img: './assets/images/faces/11.jpg',animationClass: 'animate-in'
-//       },
-//       children: [
-//         {
-//           id: '2',
-//           label: 'تیم فنی',
-//           data: { name: 'تیم فنی', email: 'tech@example.com', img: './assets/images/faces/2.jpg' },
-//           children: [
-//             { id: '3', label: 'مینا', data: { name: 'مینا', email: 'mina@example.com', img: './assets/images/faces/3.jpg',animationClass: 'animate-in' } },
-//             { id: '4', label: 'فرزاد', data: { name: 'فرزاد', email: 'farzad@example.com', img: './assets/images/faces/4.jpg',animationClass: 'animate-in' } },
-//           ],
-//         },
-//         {
-//           id: '5',
-//           label: 'تیم فروش',
-//           data: { name: 'تیم فروش', email: 'sales@example.com', img: './assets/images/faces/5.jpg',animationClass: 'animate-in' },
-//           children: [
-//             { id: '6', label: 'آرش', data: { name: 'آرش', email: 'arash@example.com', img: './assets/images/faces/6.jpg',animationClass: 'animate-in' } },
-//           ],
-//         },
-//       ],
-//     };
-//     this.buildGraph(treeData);
-//   }
+      const panSpeed = 0.7; // ← برای سرعت بیشتر می‌تونی کمش کنی
+      this.offsetX += deltaX / (this.zoom * panSpeed);
+      this.offsetY += deltaY / (this.zoom * panSpeed);
 
-//   ngAfterViewInit(): void {
-//     setTimeout(() => {
-//       this.graph.zoomToFit();
-//     }, 300);
-//   }
-//   treeMap: { [id: string]: any } = {};
+      this.lastTouchX = touch.clientX;
+      this.lastTouchY = touch.clientY;
 
-  // buildGraph(data: any, parent: string | null = null) {
-  //   console.log(data)
-  //   this.treeMap[data.id] = data;
-  //   this.nodes.push({ id: data.id, label: data.label, data: {
-  //       src: 'https://img.freepik.com/...jpg',
-  //       name: 'abbas mossavi',
-  //       email: 'info@info.com'
-  //     },
-  //    });
-  //   if (parent) {
-  //     this.links.push({ id: uuid.v4().replace(/[^a-zA-Z0-9-_-]/g, ''), source: parent, target: data.id });
-  //   }
-  //   if (data.children) {
-  //     this.expandedNodeIds.add(data.id);
-  //     for (let child of data.children) {
-  //       this.buildGraph(child, data.id);
-  //     }
-  //   }
-  // }
+    } else if (event.touches.length === 2 && this.pinchStartDistance) {
+      // حالت Zoom با دو انگشت (pinch gesture)
+      event.preventDefault(); // جلوگیری از اسکرول صفحه
 
-  // onNodeClick(event: any) {
-  //   const nodeId = event.id;
-  //   const originalNode = this.treeMap[nodeId];
-  //   if (!originalNode?.children) return;
-  //   console.log(originalNode)
-  //   // if (!rawNode?.data?.children) return;
-    
-  //   const isExpanded = this.expandedNodeIds.has(nodeId);
-    
-  //   if (isExpanded) {
-  //     console.log(isExpanded)
-  //     this.expandedNodeIds.delete(nodeId);
-  //     for (let child of originalNode?.children) {
-  //       this.animationStates[child.id] = 'out';
-  //     }
-  //     setTimeout(() => {
-  //       this.nodes = this.nodes.filter(n =>
-  //         n.id === nodeId || !originalNode?.children.find((c: any) => c.id === n.id)
-  //       );
-  //       this.links = this.links.filter(l =>
-  //         l.source !== nodeId || !originalNode?.children.find((c: any) => c.id === l.target)
-  //       );
-  //     }, 300); // همزمان با انیمیشن
-  //   } else {
-  //     this.expandedNodeIds.add(nodeId);
-  //     for (let child of originalNode?.children) {
-  //       this.nodes.push({ id: child.id, label: child.label, data: child.data });
-  //       this.links.push({ id: uuid.v4().replace(/[^a-zA-Z0-9-_-]/g, ''), source: nodeId, target: child.id });
-  //       this.animationStates[child.id] = 'in';
-  //     }
-  //   }
-  // }
+      const touch1 = event.touches[0];
+      const touch2 = event.touches[1];
 
+      const newDistance = this.getDistance(touch1, touch2);
+      const zoomFactor = newDistance / this.pinchStartDistance;
+
+      const newZoom = Math.min(3, Math.max(0.3, this.baseZoom * zoomFactor));
+      const zoomDiff = newZoom - this.zoom;
+
+      // مرکز بین دو انگشت
+      const centerX = (touch1.clientX + touch2.clientX) / 2;
+      const centerY = (touch1.clientY + touch2.clientY) / 2;
+
+      const rect = this.zoomWrapper.nativeElement.getBoundingClientRect();
+      const offsetX = (centerX - rect.left) / this.zoom;
+      const offsetY = (centerY - rect.top) / this.zoom;
+
+      // اعمال تغییرات زوم و اصلاح موقعیت (برای زوم روی محل لمس)
+      this.zoom = newZoom;
+      this.offsetX -= offsetX * zoomDiff;
+      this.offsetY -= offsetY * zoomDiff;
+    }
+  }
+
+
+  getDistance(t1: Touch, t2: Touch): number {
+    const dx = t1.clientX - t2.clientX;
+    const dy = t1.clientY - t2.clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
 }
 

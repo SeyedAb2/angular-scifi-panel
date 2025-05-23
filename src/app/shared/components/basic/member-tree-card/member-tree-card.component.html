@@ -1,0 +1,49 @@
+<button class="card custom-card border rounded m-0 cursor-pointer">
+    <div class="top-left"></div>
+    <div class="top-right"></div>
+    <div class="bottom-left"></div>
+    <div class="bottom-right"></div>
+    <div class="card-body p-4 text-center">
+        <span class="avatar avatar-xl team-avatar p-1 mb-3">
+            <img [src]=item.src alt="">
+        </span>
+        <div class="team-member-details">
+            <span class="mb-0 fw-medium fs-16 text-truncate d-block">
+                <a>{{item.name}}</a>
+            </span>
+            <span class="mb-0 fs-13 text-subtitle-color mt-1 text-muted d-block">{{item.mail}}</span>
+            <div class="btn-list mt-2">
+                <div class="w-100 d-flex justify-content-center align-item-center">
+                    <i class="ri-phone-fill text-info mx-1 d-inline-block"></i>
+                    <span class="fs-12 text-phone-color mt-1 text-muted">0912345678</span>
+                </div>
+                <!-- <button class="btn btn-sm btn-icon btn-danger-light btn-wave waves-effect waves-light">
+                    <i class="ri-facebook-line fw-bold"></i>
+                </button>
+                <button class="btn btn-sm btn-icon btn-secondary-light btn-wave waves-effect waves-light">
+                    <i class="ri-twitter-x-line fw-bold"></i>
+                </button>
+                <button class="btn btn-sm btn-icon btn-warning-light btn-wave waves-effect waves-light">
+                    <i class="ri-instagram-line fw-bold"></i>
+                </button>
+                <button class="btn btn-sm btn-icon btn-success-light btn-wave waves-effect waves-light">
+                    <i class="ri-github-line fw-bold"></i>
+                </button> -->
+            </div>
+        </div>
+    </div>
+    <div class="card-footer border-block-start-dashed border-top text-center p-0">
+        <div class="d-flex">
+            <div (click)="onDelete(item, $event)" class="text-center p-2 border-end border-inline-end-dashed flex-fill action-btn red">
+                <a class="text-danger fs-18"><i class="ri-delete-bin-fill me-1 d-inline-block"></i></a>
+            </div>
+            <div (click)="onEdit(item, $event)" class="text-center action-btn blue p-2 flex-fill border-end border-inline-end-dashed">
+                <a class=" fs-18"><i class="text-blue ri-pencil-fill me-1 d-inline-block"></i></a>
+            </div>
+            <div (click)="onAddNew(item, $event)" class="text-center p-2 action-btn green flex-fill">
+                <a class="text-success fs-18"><i class="ri-user-add-fill me-1 d-inline-block"></i></a>
+            </div>
+            
+        </div>
+    </div>
+</button>
