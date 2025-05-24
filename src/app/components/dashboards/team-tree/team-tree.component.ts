@@ -24,7 +24,7 @@ export class TeamTreeComponent implements OnInit {
   selectedNodes!: TreeNode[];
   zoom: number = 1;
   offsetX: number = 0;
-  offsetY: number = 30;
+  offsetY: number = 45;
   modeType:'edit'|'list' = 'edit'
   private pinchStartDistance: number | null = null;
   private baseZoom = 1;
@@ -248,7 +248,7 @@ export class TeamTreeComponent implements OnInit {
 
   resetZoom() {
     this.zoom = 0.9;
-    this.offsetY = 30;
+    this.offsetY = 45;
 
     setTimeout(() => {
       const container = this.zoomContainer.nativeElement as HTMLElement;
