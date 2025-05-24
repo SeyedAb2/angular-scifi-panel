@@ -25,7 +25,7 @@ export class TeamTreeComponent implements OnInit {
   zoom: number = 1;
   offsetX: number = 0;
   offsetY: number = 30;
-
+  modeType:'edit'|'list' = 'edit'
   private pinchStartDistance: number | null = null;
   private baseZoom = 1;
   public isPanning = false;
@@ -199,6 +199,11 @@ export class TeamTreeComponent implements OnInit {
     node.expanded = !node.expanded;
   }
   
+  mode(){
+    if(this.modeType=='edit') {this.modeType='list'}
+    else {this.modeType='edit'}
+  }
+
   ngOnInit(): void {
   }
   ngAfterViewInit() {
@@ -284,31 +289,33 @@ export class TeamTreeComponent implements OnInit {
       this.lastTouchY = touch.clientY;
 
     } else if (event.touches.length === 2 && this.pinchStartDistance) {
-      // حالت Zoom با دو انگشت (pinch gesture)
       event.preventDefault(); // جلوگیری از اسکرول صفحه
 
       const touch1 = event.touches[0];
       const touch2 = event.touches[1];
 
       const newDistance = this.getDistance(touch1, touch2);
-      const zoomFactor = newDistance / this.pinchStartDistance;
+      const rawZoom = newDistance / this.pinchStartDistance;
+      const zoomFactor = 1 + (rawZoom - 1) * 0.4; // 🔽 کاهش سرعت زوم
 
-      const newZoom = Math.min(3, Math.max(0.3, this.baseZoom * zoomFactor));
-      const zoomDiff = newZoom - this.zoom;
+      const newZoom = Math.min(3, Math.max(0.3, this.baseZoom * zoomFactor)); // 🔄 newZoom نرم و محدود شده
 
-      // مرکز بین دو انگشت
+      // 🔹 مرکز بین دو انگشت (focal point)
       const centerX = (touch1.clientX + touch2.clientX) / 2;
       const centerY = (touch1.clientY + touch2.clientY) / 2;
 
       const rect = this.zoomWrapper.nativeElement.getBoundingClientRect();
+
+      // 🔸 محاسبه offset به ازای موقعیت مرکز لمس و جبران حرکت
       const offsetX = (centerX - rect.left) / this.zoom;
       const offsetY = (centerY - rect.top) / this.zoom;
 
-      // اعمال تغییرات زوم و اصلاح موقعیت (برای زوم روی محل لمس)
+      const oldZoom = this.zoom;
       this.zoom = newZoom;
-      this.offsetX -= offsetX * zoomDiff;
-      this.offsetY -= offsetY * zoomDiff;
-    }
+
+      this.offsetX -= offsetX * (this.zoom - oldZoom); // 🔄 جبران دقیق جابجایی X
+      this.offsetY -= offsetY * (this.zoom - oldZoom); // 🔄 جبران دقیق جابجایی Y
+    } 
   }
 
 
@@ -316,6 +323,22 @@ export class TeamTreeComponent implements OnInit {
     const dx = t1.clientX - t2.clientX;
     const dy = t1.clientY - t2.clientY;
     return Math.sqrt(dx * dx + dy * dy);
+  }
+  deleteItem(item:any){
+    this.data = this.removeNode(item, this.data);
+  }
+  removeNode(targetNode: TreeNode, nodes: TreeNode[]): TreeNode[] {
+    return nodes
+      .map(node => {
+        if (node === targetNode) return null;
+
+        if (node.children) {
+          node.children = this.removeNode(targetNode, node.children);
+        }
+
+        return node;
+      })
+      .filter(n => n !== null) as TreeNode[];
   }
 }
 

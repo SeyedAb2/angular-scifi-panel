@@ -1,20 +1,21 @@
 <div #zoomContainer class="zoom-container">
   <div class="zoom-toolbar">
     <button (click)="resetZoom()">Reset</button>
+    <button (click)="mode()" class="bg-info mx-2">{{modeType=='edit' ?  'edit mode'  : 'list mode'}}</button>
   </div>
 
-  <div class="zoom-scroll-box">
+  <div class="zoom-scroll-box"
+    (mousedown)="startPan($event)"
+    (mousemove)="onPan($event)"
+    (mouseup)="endPan()"
+    (wheel)="onZoom($event)"
+    (touchstart)="onTouchStart($event)"
+    (touchmove)="onTouchMove($event)"
+    (touchend)="endPan()"
+    >
     <div
-      
       #zoomWrapper
       class="zoom-wrapper"
-      (mousedown)="startPan($event)"
-      (mousemove)="onPan($event)"
-      (mouseup)="endPan()"
-      (wheel)="onZoom($event)"
-      (touchstart)="onTouchStart($event)"
-      (touchmove)="onTouchMove($event)"
-      (touchend)="endPan()"
       [ngClass]="{ 'grabbing': isPanning }"
       [ngStyle]="{
         'transform': 'scale(' + zoom + ') translate(' + offsetX + 'px,' + offsetY + 'px)'
@@ -22,7 +23,7 @@
     >
       <p-organizationChart [value]="data">
         <ng-template let-node pTemplate="person">
-          <app-member-tree-card (click)="toggleNode(node)" [@expandCollapse] [person]="node.data"></app-member-tree-card>
+          <app-member-tree-card (deleteItem)="deleteItem($event)" (click)="toggleNode(node)" [@expandCollapse] [person]="node" [mode]="modeType"></app-member-tree-card>
         </ng-template>
       </p-organizationChart>
   
