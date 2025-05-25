@@ -7,31 +7,13 @@
         
         <div class="card-footer border-block-start-dashed border-top text-center p-0">
             <div class="d-flex flex-column flex-column-reverse justify-content-start align-items-start">
-                @if(modeType=='edit'){<div (click)="onDelete($event,content)" data-bs-target="#add-member" class="text-center px-2 flex-fill action-btn red">
+                @if(modeType=='edit'){<div (click)="onDelete(deleteModal, $event)" data-bs-target="#delete-member" class="text-center px-2 flex-fill action-btn red">
                     <a class="text-danger fs-18"><i class="ri-delete-bin-fill me-1 d-inline-block"></i></a>
                 </div>}
-                <ng-template #content let-modal>
-                    <!-- Start:: add-members modals -->
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="addmemberLabel">Hint</h6>
-                        <button (click)="modal.dismiss('Cross click')" type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body px-4">
-                        <div class="row">
-                            Are you Sure for removing {{item.name}}
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button (click)="modal.dismiss('Cross click')" type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
-                        <button (click)="modal.close('delete')" type="button" class="btn btn-sm btn-danger">yes</button>
-                    </div>
-                    <!-- End:: add-members modals -->
-                </ng-template>
-                @if(modeType=='edit'){<div (click)="onEdit(item, $event)" class="text-center action-btn blue px-2 flex-fill">
+                @if(modeType=='edit'){<div (click)="onEdit(AddOrEditMember, $event)" class="text-center action-btn blue px-2 flex-fill">
                     <a class=" fs-18"><i class="text-blue ri-pencil-fill me-1 d-inline-block"></i></a>
                 </div>}
-                @if(modeType=='edit'){<div (click)="onAddNew(item, $event)" class="text-center px-2 action-btn green mt-2 flex-fill">
+                @if(modeType=='edit'){<div (click)="onAddNew(AddOrEditMember, $event)" class="text-center px-2 action-btn green mt-2 flex-fill">
                     <a class="text-success fs-18"><i class="ri-user-add-fill me-1 d-inline-block"></i></a>
                 </div>}
                 @if(data.children && data.children.length){<div class=" text-center w-5 h-5 rounded-circle border flex-fill m-2 overflow-hidden mb-0 mt-2">
@@ -41,7 +23,7 @@
         </div>
         <div class="card-body p-2 text-center d-flex flex-row-reverse align-itemms-start justify-content-start">
             <span class="avatar avatar-xl team-avatar p-1 mb-3">
-                <img [src]=item.src alt="">
+                <img [src]="item.src && item.src!='' ? item.src : './assets/images/faces/9.jpg'" alt="">
             </span>
             <div class="team-member-details">
                 <span class="mb-0 fw-medium fs-16 text-end d-block me-2">
@@ -70,3 +52,76 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!-- start delete modal -->
+<ng-template #deleteModal let-modal>
+    <!-- Start:: add-members modals -->
+    <div class="modal-header">
+        <h6 class="modal-title" id="deletememberLabel">Hint</h6>
+        <button (click)="modal.dismiss('Cross click')" type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+    </div>
+    <div class="modal-body px-4">
+        <div class="row">
+            Are you Sure for removing {{item.name}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button (click)="modal.dismiss('Cross click')" type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
+        <button (click)="modal.close('delete')" type="button" class="btn btn-sm btn-danger">yes</button>
+    </div>
+    <!-- End:: add-members modals -->
+</ng-template>
+<!-- end delete modal -->
+
+<!-- start add/edit modal -->
+ <ng-template #AddOrEditMember let-modal>
+    <!-- Start:: add-members modals -->
+    <div class="modal-header">
+        <h6 class="modal-title" id="addmemberLabel">{{action=='edit' ? 'edit ' + memberForm.value.name : 'Add Member'}}</h6>
+        <button (click)="modal.dismiss('Cross click')" type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+    </div>
+    <form [formGroup]="memberForm">
+        <div class="modal-body px-4">
+            <div class="row">
+                <div class="mb-4 d-sm-flex align-items-center gap-1 flex-wrap">
+                    <span class="mb-0 me-3 avatar avatar-xxl">
+                        <img [src]="url1 ? url1 : './assets/images/faces/9.jpg'" alt="" class="profile-img">
+                        <span (change)="handleFileInput($event)" class="badge bg-primary avatar-badge cursor-pointer">
+                            <input type="file" name="photo" class="position-absolute w-100 op-0 profile-change">
+                            <i class="fe fe-camera"></i>
+                        </span>
+                        @if(url1){<span (click)="deleteImage()" class="badge bg-danger avatar-badge mt-4 cursor-pointer">
+                            <i class="fe fe-trash "></i>
+                        </span>}
+                    </span>
+                    <div class="">
+                        <div class="fw-medium lh-1"> {{memberForm.controls['name'].value}} </div>
+                        <div class="fs-12 text-muted">{{memberForm.controls['mail'].value}}</div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label for="team-name01" class="form-label">Name*</label>
+                    <input formControlName="name" type="text" class="" [class]="memberForm.controls['name'].invalid && isSubmit ? 'form-control bg-erroInput' : 'form-control' " id="team-name01" placeholder="Enter Name">
+                </div>
+                <div class="col-xl-12">
+                    <label for="team-role" class="form-label">Role*</label>
+                    <input formControlName="mail" type="text" class="form-control" [class]="memberForm.controls['mail'].invalid && isSubmit ? 'form-control bg-erroInput' : 'form-control' " id="team-role" placeholder="Enter Role">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="modal.dismiss('Cross click')" type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
+            @if(action=='edit'){<button (click)="edit(modal)" type="button" class="btn btn-sm btn-primary">edit</button>}
+            @if(action=='add'){<button (click)="addNew(modal)" type="button" class="btn btn-sm btn-primary">add</button>}
+        </div>
+    </form>
+    <!-- End:: add-members modals -->
+</ng-template>
+<!-- end add/edit modal -->
+
+

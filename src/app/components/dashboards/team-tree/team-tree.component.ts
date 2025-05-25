@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { TreeNode } from 'primeng/api';
 import { collapseTeamCard } from '../../../shared/animation/animation';
 import { MemberTreeCardComponent } from '../../../shared/components/basic/member-tree-card/member-tree-card.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-team-tree',
@@ -13,7 +14,7 @@ import { MemberTreeCardComponent } from '../../../shared/components/basic/member
     MemberTreeCardComponent,
     FormsModule,
     CommonModule,
-    // NgxGraphModule,
+    ReactiveFormsModule,
     OrganizationChartModule
   ],
   templateUrl: './team-tree.component.html',
@@ -26,6 +27,10 @@ export class TeamTreeComponent implements OnInit {
   offsetX: number = 0;
   offsetY: number = 45;
   modeType:'edit'|'list' = 'edit'
+  isSubmit: boolean = false;
+  item:any ;
+  url1: string = '';
+  memberForm!: FormGroup;
   private pinchStartDistance: number | null = null;
   private baseZoom = 1;
   public isPanning = false;
@@ -195,6 +200,9 @@ export class TeamTreeComponent implements OnInit {
   },
   ];
 
+  constructor(
+    private modalService: NgbModal
+  ){}
   toggleNode(node: any) {
     node.expanded = !node.expanded;
   }
@@ -205,11 +213,73 @@ export class TeamTreeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeForm()
   }
   ngAfterViewInit() {
     this.resetZoom()
   }
-
+  initializeForm(){
+    this.memberForm = new FormGroup({
+      name: new FormControl(
+        '',
+        Validators.required
+      ),
+      mail: new FormControl('',Validators.required),
+      src: new FormControl(''),
+    });
+    this.url1 = ''
+  }
+  handleFileInput(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.url1 = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  onAddNew(content:any,e:any){
+    e.stopPropagation()
+    this.modalService.open(content, { windowClass: 'dark-modal',centered:true }).result.then(
+      (result) => {
+        if (result === 'add') {
+          // this.deleteItem.emit(this.data)
+        }
+      },
+      (reason) => {
+        this.resetForm()
+        // اینجا کاربر روی دکمه لغو یا بیرون کلیک کرده
+      }
+    );
+  }
+  resetForm(){
+    this.memberForm.reset()
+    this.isSubmit = false
+    this.url1 = ''
+  }
+  deleteImage(){
+    this.url1 = ''
+  }
+  addNew(modal:any){
+    this.isSubmit = true
+    if(this.memberForm.valid) {
+      let obj:any = {
+        data:{
+          name : this.memberForm.value.name,
+          mail : this.memberForm.value.mail,
+          src: this.url1
+        },
+        expanded:false,
+        children:[],
+        type:'person'
+      }
+      this.data.push(obj)
+      modal.close('add')
+      this.resetForm()
+      this.resetZoom()
+    }
+  }
   startPan(event: MouseEvent) {
     this.isPanning = true;
     this.startX = event.clientX;
@@ -327,6 +397,14 @@ export class TeamTreeComponent implements OnInit {
   deleteItem(item:any){
     this.data = this.removeNode(item, this.data);
   }
+  editItem(item:any){
+    this.updateNode(this.data, item.oldData, item.newData);
+  }
+  createItem(item:any){
+    console.log(item)
+    this.addChildNode(this.data, item.parentData, item.childNode);
+    this.data = [...this.data]
+  }
   removeNode(targetNode: TreeNode, nodes: TreeNode[]): TreeNode[] {
     return nodes
       .map(node => {
@@ -339,6 +417,46 @@ export class TeamTreeComponent implements OnInit {
         return node;
       })
       .filter(n => n !== null) as TreeNode[];
+  }
+  updateNode(tree: TreeNode[], oldData: any, newData: any): boolean {
+    for (let node of tree) {
+      if (
+        node.data.name === oldData.data.name &&
+        node.data.mail === oldData.data.mail &&
+        node.data.team === oldData.data.team
+      ) {
+        Object.assign(node.data, newData.data);
+        return true;
+      }
+
+      if (node.children?.length) {
+        const found = this.updateNode(node.children, oldData, newData);
+        if (found) return true;
+      }
+    }
+
+    return false;
+  }
+  addChildNode(tree: TreeNode[], parentData: any, childNode: TreeNode): boolean {
+    for (let node of tree) {
+      if (
+        node.data.name === parentData.data.name &&
+        node.data.mail === parentData.data.mail &&
+        node.data.src === parentData.data.src
+      ) {
+        if (!node.children) node.children = [];
+        node.expanded = true
+        node.children.push(childNode);
+        return true;
+      }
+
+      if (node.children?.length) {
+        const found = this.addChildNode(node.children, parentData, childNode);
+        if (found) return true;
+      }
+    }
+
+    return false;
   }
 }
 

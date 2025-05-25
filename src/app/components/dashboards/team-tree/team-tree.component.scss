@@ -5,25 +5,50 @@
   background-color: #e3f2fd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-::ng-deep .p-organizationchart-line-down {
-  border-top: 2px solid #00ff80 !important;
+@supports (-moz-appearance: none) {
+  ::ng-deep .p-organizationchart-line-down {
+    box-shadow: 0 -1px 0 0 #00ff80 inset !important;
+    border: none !important;
+  }
+  ::ng-deep .p-organizationchart-line-left {
+    box-shadow: -1px 0 0 0 #00ff80 inset !important;
+    border: none !important;
+  }
+  ::ng-deep .p-organizationchart-line-right {
+    box-shadow: 1px 0 0 0 #00ff80 inset !important;
+    border: none !important;
+  }
+  ::ng-deep .p-organizationchart-line-top {
+    box-shadow: 0 1px 0 0 #00ff80 inset !important;
+    border: none !important;
+  }
 }
-::ng-deep .p-organizationchart-line-left {
-  border-right: 2px solid #00ff80 !important;
+@supports not (-moz-appearance: none) {
+  ::ng-deep .p-organizationchart-line-down {
+    border-top: 2px solid #00ff80 !important;
+    box-shadow: none !important;
+  }
+  ::ng-deep .p-organizationchart-line-left {
+    border-right: 2px solid #00ff80 !important;
+    box-shadow: none !important;
+  }
+  ::ng-deep .p-organizationchart-line-right {
+    border-left: 2px solid #00ff80 !important;
+    box-shadow: none !important;
+  }
+  ::ng-deep .p-organizationchart-line-top {
+    border-top: 2px solid #00ff80 !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+  ::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-down,
+  ::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-left,
+  ::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-right,
+  ::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-top {
+    border-color: transparent !important;
+  }
 }
-::ng-deep .p-organizationchart-line-right {
-  border-left: 2px solid #00ff80 !important;
-}
-::ng-deep .p-organizationchart-line-top {
-  border-top: 2px solid #00ff80 !important;
-  border-bottom: none !important;
-}
-::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-down,
-::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-left,
-::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-right,
-::ng-deep .p-organizationchart-node:not(.p-organizationchart-node-expanded) + tr .p-organizationchart-line-top {
-  border-color: transparent !important;
-}
+
 ::ng-deep{
   tr.p-organizationchart-node-hidden{
     td{
@@ -136,6 +161,9 @@
   transition: transform 0.1s ease-out;
   touch-action: none;
   user-select: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 .zoom-wrapper.grabbing {
   cursor: grabbing;

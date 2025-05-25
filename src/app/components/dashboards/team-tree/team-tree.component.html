@@ -1,3 +1,4 @@
+@if(data.length){
 <div #zoomContainer class="zoom-container">
   <div class="zoom-toolbar">
     <button (click)="resetZoom()">Reset</button>
@@ -23,12 +24,93 @@
     >
       <p-organizationChart [value]="data">
         <ng-template let-node pTemplate="person">
-          <app-member-tree-card (deleteItem)="deleteItem($event)" (click)="toggleNode(node)" [@expandCollapse] [person]="node" [mode]="modeType"></app-member-tree-card>
+          <app-member-tree-card 
+            (deleteItem)="deleteItem($event)"
+            (editItem)="editItem($event)" 
+            (addItem)="createItem($event)" 
+            (click)="toggleNode(node)" 
+            [@expandCollapse] 
+            [person]="node" 
+            [mode]="modeType">
+          </app-member-tree-card>
         </ng-template>
       </p-organizationChart>
   
     </div>
   </div>
 </div>
+}
+@else {
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card custom-card">
+        <div class="top-left"></div>
+        <div class="top-right"></div>
+        <div class="bottom-left"></div>
+        <div class="bottom-right"></div>
+        <div class="card-header justify-content-between">
+            <div class="card-title">
+                Create Member
+            </div>
+            <div class="prism-toggle">
+                <button (click)="onAddNew(AddOrEditMember, $event)" class="btn btn-sm btn-primary-light" appShowCode>create<i class="ri-add-line ms-2 d-inline-block align-middle"></i></button>
+            </div>
+        </div>
+        <div class="card-body">
+            No members have been created yet. Please add a new member.
+        </div>
+        <div class="card-footer d-none border-top-0">
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+
+ <ng-template #AddOrEditMember let-modal>
+    <!-- Start:: add-members modals -->
+    <div class="modal-header">
+        <h6 class="modal-title" id="addmemberLabel">Add Member</h6>
+        <button (click)="modal.dismiss('Cross click')" type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+    </div>
+    <form [formGroup]="memberForm">
+        <div class="modal-body px-4">
+            <div class="row">
+                <div class="mb-4 d-sm-flex align-items-center gap-1 flex-wrap">
+                    <span class="mb-0 me-3 avatar avatar-xxl">
+                        <img [src]="url1 ? url1 : './assets/images/faces/9.jpg'" alt="" class="profile-img">
+                        <span (change)="handleFileInput($event)" class="badge bg-primary avatar-badge cursor-pointer">
+                            <input type="file" name="photo" class="position-absolute w-100 op-0 profile-change">
+                            <i class="fe fe-camera"></i>
+                        </span>
+                        @if(url1){<span (click)="deleteImage()" class="badge bg-danger avatar-badge mt-4 cursor-pointer">
+                            <i class="fe fe-trash "></i>
+                        </span>}
+                    </span>
+                    <div class="">
+                        <div class="fw-medium lh-1"> {{memberForm.controls['name'].value}} </div>
+                        <div class="fs-12 text-muted">{{memberForm.controls['mail'].value}}</div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <label for="team-name01" class="form-label">Name*</label>
+                    <input formControlName="name" type="text" class="" [class]="memberForm.controls['name'].invalid && isSubmit ? 'form-control bg-erroInput' : 'form-control' " id="team-name01" placeholder="Enter Name">
+                </div>
+                <div class="col-xl-12">
+                    <label for="team-role" class="form-label">Role*</label>
+                    <input formControlName="mail" type="text" class="form-control" [class]="memberForm.controls['mail'].invalid && isSubmit ? 'form-control bg-erroInput' : 'form-control' " id="team-role" placeholder="Enter Role">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="modal.dismiss('Cross click')" type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Cancel</button>
+            <button (click)="addNew(modal)" type="button" class="btn btn-sm btn-primary">add</button>
+        </div>
+    </form>
+    <!-- End:: add-members modals -->
+</ng-template>
+<!-- end add/edit modal -->
+
 
 
