@@ -22,7 +22,7 @@ interface StateType {
 export class AppStateService {
   private readonly localStorageKey = 'scifi-ng'; // Customize this key
   private initialState: StateType = {
-    direction: 'ltr',               // ltr, rtl
+    direction: 'rtl',               // ltr, rtl
     navigationStyles: 'vertical',   // vertical, horizontal
     menuStyles: '',                 // menu-click, menu-hover, icon-click, icon-hover
     layoutStyles: '',               // double-menu, detached, icon-overlay, icontext-menu, closed-menu, default-menu

@@ -7,7 +7,7 @@ export let RevenueData: any = {
         height: 40,
         width: 100,
         type: 'area',
-        fontFamily: 'Rajdhani',
+        fontFamily: 'IRANYekan',
         foreColor: '#5d6162',
         zoom: {
             enabled: false
@@ -86,7 +86,7 @@ export let CustomersData: any = {
         height: 40,
         width: 100,
         type: 'area',
-        fontFamily: 'Rajdhani',
+        fontFamily: 'IRANYekan',
         foreColor: '#5d6162',
         zoom: {
             enabled: false
@@ -161,7 +161,7 @@ export let RatioData: any = {
         height: 40,
         width: 100,
         type: 'area',
-        fontFamily: 'Rajdhani',
+        fontFamily: 'IRANYekan',
         foreColor: '#5d6162',
         zoom: {
             enabled: false
@@ -237,7 +237,7 @@ export let DealsData: any = {
         height: 40,
         width: 100,
         type: 'area',
-        fontFamily: 'Rajdhani',
+        fontFamily: 'IRANYekan',
         foreColor: '#5d6162',
         zoom: {
             enabled: false

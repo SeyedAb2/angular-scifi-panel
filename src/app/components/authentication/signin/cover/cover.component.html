@@ -1,15 +1,5 @@
-<div class="row authentication mx-0">
-  <div class="col-xxl-6 col-xl-6 col-lg-7 d-xl-block d-none px-0">
-      <div class="authentication-cover bg-primary">
-          <div class="authentication-cover-image">
-              <div class="text-start">
-                  <h1 class="text-fixed-white mb-1 fw-medium">Welcome!</h1>
-                  <p class="text-fixed-white mb-1">Let's get Started with our product just sign up with simple process and make your requirements .There are many variations of passages of Lorem Ipsum available.</p>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="col-xxl-6 col-xl-6 col-lg-12">
+<div class="row justify-content-center authentication mx-0">
+  <div class="col-12 col-md-7 ">
       <div class="row justify-content-center align-items-center h-100">
           <div class="col-xxl-6 col-xl-9 col-lg-6 col-md-6 col-sm-8 col-12">
               <div class="card custom-card shadow-none my-4">
@@ -20,66 +10,45 @@
                   <div class="card-body p-5">
                       <div class="mb-3 d-flex justify-content-center">
                           <a [routerLink]="['/dashboards/gaming']" >
-                              <img src="./assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
+                              <img src="./assets/images/main-image/portrait_transparent_cropped.png" alt="logo" class="desktop-dark">
                           </a>
                       </div>
-                      <p class="h5 mb-2 text-center">Sign In</p>
-                      <p class="mb-4 text-muted op-7 fw-normal text-center">Welcome back Anthony !</p>
-                      <div class="d-flex mb-3 justify-content-between gap-2 flex-wrap flex-lg-nowrap">
-                          <button class="btn btn-lg btn-light-ghost border d-flex align-items-center justify-content-center flex-fill">
-                              <span class="avatar avatar-xs">
-                                  <img src="./assets/images/media/apps/google.png" alt="">
-                              </span>
-                              <span class="lh-1 ms-2 fs-13 text-default">Signup with Google</span>
-                          </button>
-                          <button class="btn btn-lg btn-light-ghost border d-flex align-items-center justify-content-center flex-fill">
-                              <span class="avatar avatar-xs invert-1">
-                                  <img src="./assets/images/media/apps/apple.png" alt="">
-                              </span>
-                              <span class="lh-1 ms-2 fs-13 text-default">Signup with Apple</span>
-                          </button>
-                      </div>
-                      <div class="text-center my-3 authentication-barrier">
+                      <p class="h5 mb-2 text-center d-flex align-item-center justify-content-center">
+                        <!-- <mat-icon class="mat-center mx-2 mt-1 text-primary h2">login</mat-icon> -->
+                        <span class="text-primary h2">ورود</span>
+                      </p>
+                      <p class="mb-4 text-muted op-7 fw-normal text-center">خوش آمدید</p>
+                      <!-- <div class="text-center my-3 authentication-barrier">
                           <span>OR</span>
-                      </div>
+                      </div> -->
                       <div class="row gy-3">
                           <div class="col-xl-12">
-                              <label for="signin-username" class="form-label text-default">User Name</label>
-                              <input type="text" class="form-control" id="signin-username" placeholder="user name">
+                              <label for="signin-username" class="form-label text-default">نام کاربری</label>
+                              <input type="text" class="form-control" id="signin-username" placeholder="نام کاربری را وارد کنید">
                           </div>
                           <div class="col-xl-12 mb-2">
-                              <label for="signin-password" class="form-label text-default d-block">Password<a [routerLink]="['/authentication/reset-password/basic']" class="float-end text-danger">Forget password ?</a></label>
+                              <label for="signin-password" class="form-label text-default d-flex">
+                                  <span class="me-1">رمزعبور</span>
+                                  <a [routerLink]="['/authentication/reset-password/basic']" class="float-end text-danger">رمزعبور را فراموش کردید؟</a>
+                                </label>
                               <div class="position-relative">
-                                  <input [type]="showPassword ? 'text' : 'password'" type="password" class="form-control create-password-input" id="signin-password" placeholder="password">
+                                  <input [type]="showPassword ? 'text' : 'password'" type="password" class="form-control create-password-input" id="signin-password" placeholder="رمزعبور خودرا وارد کنید">
                                   <a href="javascript:void(0);" class="show-password-button text-muted" (click)="togglePassword()" id="button-addon2"><i class="{{toggleClass}} align-middle"></i></a>
                               </div>
                               <div class="mt-2">
                                   <div class="form-check">
                                       <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                                       <label class="form-check-label text-muted fw-normal" for="defaultCheck1">
-                                          Remember password ?
+                                        مرا بخاطر بسپار؟
                                       </label>
                                   </div>
                               </div>
                           </div>
                       </div>
                       <div class="d-grid mt-4">
-                          <a [routerLink]="['/dashboards/gaming']"  class="btn btn-primary">Sign In</a>
+                          <a [routerLink]="['/dashboards/gaming']"  class="btn btn-primary">ورود</a>
                       </div>
-                      <div class="text-center">
-                          <p class="text-muted mt-3 mb-0">Dont have an account? <a [routerLink]="['/authentication/sign-up/basic']" class="text-primary">Sign Up</a></p>
-                      </div>
-                      <div class="btn-list text-center mt-3">
-                          <button class="btn btn-icon btn-sm btn-wave authentication-social-btn">
-                              <i class="ri-facebook-line fw-bold"></i>
-                          </button>
-                          <button class="btn btn-icon btn-sm btn-wave authentication-social-btn">
-                              <i class="ri-twitter-x-line fw-bold"></i>
-                          </button>
-                          <button class="btn btn-icon btn-sm btn-wave authentication-social-btn">
-                              <i class="ri-instagram-line fw-bold"></i>
-                          </button>
-                      </div>
+                      
                   </div>
               </div>
           </div>

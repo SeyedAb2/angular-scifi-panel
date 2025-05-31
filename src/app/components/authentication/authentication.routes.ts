@@ -28,14 +28,14 @@ export const admin: Routes = [
         ),
         title: 'SCIFI - Comming Soon'
     },
-    {
-      path: 'create-password/basic',
-      loadComponent: () =>
-        import('./create-password/basic/basic.component').then(
-          (m) => m.BasicComponent
-        ),
-        title: 'SCIFI - Basic Create Password '
-    },
+    // {
+    //   path: 'create-password/basic',
+    //   loadComponent: () =>
+    //     import('./create-password/basic/basic.component').then(
+    //       (m) => m.BasicComponent
+    //     ),
+    //     title: 'SCIFI - Basic Create Password '
+    // },
     {
       path: 'create-password/cover',
       loadComponent: () =>
@@ -61,46 +61,46 @@ export const admin: Routes = [
         ),
         title: 'SCIFI - Lock Screen Cover'
     },
-    {
-      path: 'reset-password/basic',
-      loadComponent: () =>
-        import('./reset-password/basic/basic.component').then(
-          (m) => m.BasicComponent
-        ),
-        title: 'SCIFI - Basic Reset Password '
-    },
-    {
-      path: 'reset-password/cover',
-      loadComponent: () =>
-        import('./reset-password/cover/cover.component').then(
-          (m) => m.CoverComponent
-        ),
-        title: 'SCIFI - Reset Password Cover'
-    },
-    {
-      path: 'sign-up/basic',
-      loadComponent: () =>
-        import('./signup/basic/basic.component').then(
-          (m) => m.BasicComponent
-        ),
-        title: 'SCIFI - Basic Sign Up'
-    },
-    {
-      path: 'sign-up/cover',
-      loadComponent: () =>
-        import('./signup/cover/cover.component').then(
-          (m) => m.CoverComponent
-        ),
-        title: 'SCIFI - Cover Sign Up'
-    },
-    {
-      path: 'sign-in/basic',
-      loadComponent: () =>
-        import('./signin/basic/basic.component').then(
-          (m) => m.BasicComponent
-        ),
-        title: 'SCIFI - Basic Sign In'
-    },
+    // {
+    //   path: 'reset-password/basic',
+    //   loadComponent: () =>
+    //     import('./reset-password/basic/basic.component').then(
+    //       (m) => m.BasicComponent
+    //     ),
+    //     title: 'SCIFI - Basic Reset Password '
+    // },
+    // {
+    //   path: 'reset-password/cover',
+    //   loadComponent: () =>
+    //     import('./reset-password/cover/cover.component').then(
+    //       (m) => m.CoverComponent
+    //     ),
+    //     title: 'SCIFI - Reset Password Cover'
+    // },
+    // {
+    //   path: 'sign-up/basic',
+    //   loadComponent: () =>
+    //     import('./signup/basic/basic.component').then(
+    //       (m) => m.BasicComponent
+    //     ),
+    //     title: 'SCIFI - Basic Sign Up'
+    // },
+    // {
+    //   path: 'sign-up/cover',
+    //   loadComponent: () =>
+    //     import('./signup/cover/cover.component').then(
+    //       (m) => m.CoverComponent
+    //     ),
+    //     title: 'SCIFI - Cover Sign Up'
+    // },
+    // {
+    //   path: 'sign-in/basic',
+    //   loadComponent: () =>
+    //     import('./signin/basic/basic.component').then(
+    //       (m) => m.BasicComponent
+    //     ),
+    //     title: 'SCIFI - Basic Sign In'
+    // },
     {
       path: 'sign-in/cover',
       loadComponent: () =>

@@ -67,7 +67,7 @@ export let StatisticsChartData: any = {
             style: {
                 color: '#adb5be',
                 fontSize: '14px',
-                fontFamily: 'Rajdhani',
+                fontFamily: 'IRANYekan',
                 fontWeight: 600,
                 cssClass: 'apexcharts-yaxis-label',
             },

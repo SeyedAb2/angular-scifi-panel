@@ -5,10 +5,11 @@ import { fromEvent } from 'rxjs';
 import { SharedModule } from '../../../../shared/shared.module';
 import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-cover',
   standalone: true,
-  imports: [SharedModule, CarouselModule, NgbModule, RouterModule],
+  imports: [MatIcon,SharedModule, CarouselModule, NgbModule, RouterModule],
   templateUrl: './cover.component.html',
   styleUrls: ['./cover.component.scss']
 })
@@ -28,7 +29,7 @@ export class CoverComponent {
     // html?.removeAttribute('data-card-background');
     html?.setAttribute('data-theme-mode','dark');
     let body = document.querySelector('body');
-    body?.classList.add('bg-white');
+    body?.classList.add('authentication-background');
    }
 
    ngOnDistroy(){
