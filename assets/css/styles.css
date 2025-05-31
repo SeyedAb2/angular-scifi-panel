@@ -66,6 +66,7 @@ typography
 /* FONT */
 /* Rajdhani */
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
+@import '../scss/_fonts.scss';
 :root {
   color-scheme: dark;
   --body-bg-rgb: 20, 20, 20;
@@ -95,7 +96,7 @@ typography
   --primary08: rgba(var(--primary-rgb), 0.8);
   --primary09: rgba(var(--primary-rgb), 0.9);
   --primary005: rgba(var(--primary-rgb), 0.05);
-  --default-font-family: "Rajdhani", sans-serif;
+  --default-font-family: "Rajdhani","IRANYekan", sans-serif;
   --default-font-weight: 400;
   --default-text-color-rgb: 51, 51, 51;
   --default-border: #e8e8e8;
@@ -26681,3 +26682,10 @@ a.link-underline-info {
 /*------ typography end ------*/
 
 /*# sourceMappingURL=styles.css.map */
+.mat-center{
+  display:flex  !important;
+  justify-content: center  !important;
+  align-items:center !important;
+  width:auto !important;
+  height:auto !important
+}
