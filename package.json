@@ -29,7 +29,7 @@
     "@geometricpanda/angular-tilt": "^0.4.0",
     "@kolkov/angular-editor": "^3.0.0-beta.0",
     "@ks89/angular-modal-gallery": "^11.1.2",
-    "@ng-bootstrap/ng-bootstrap": "^16.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.0",
     "@ng-select/ng-select": "^12.0.7",
     "@ngneat/input-mask": "^6.1.0",
     "@ngx-gallery/lightbox": "^5.0.0-beta.0",

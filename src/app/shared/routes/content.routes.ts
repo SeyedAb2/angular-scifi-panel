@@ -26,11 +26,13 @@ import { mapsRoutingModule } from '../../components/maps/maps.routes';
 import { iconsRoutingModule } from '../../components/icons/icons.routes';
 import { widgetsRoutingModule } from '../../components/widgets/widgets.routes';
 import { tablesRoutingModule } from '../../components/tables/tables.routes';
+import { humanResourceRoutingModule } from '../../components/human-resource/human-resource.routes';
 
  export const content: Routes = [
 
    { path: '', children: [
    ...dashboardRoutingModule.routes,
+   ...humanResourceRoutingModule.routes,
    ...advanceduiRoutingModule.routes,
    ...pagesRoutingModule.routes,
    ...ecommerceRoutingModule.routes,

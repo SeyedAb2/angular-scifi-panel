@@ -100,24 +100,29 @@ export class NavService implements OnDestroy {
       dirchange: false,
       children: [
         {
-          path: '/users',
+          path: '/hr/users',
           title: 'مدیریت کاربران',
           type: 'link',
           dirchange: false,
         },
         {
-          path: '/users/access',
+          path: '/hr/access',
           title: 'مدیریت دسترسی ها',
           type: 'link',
           dirchange: false,
         },
         {
-          path: '/users/level',
+          path: '/hr/level',
           title: 'مدیریت سطح ها',
           type: 'link',
           dirchange: false,
         },
-        
+        {
+          path: '/hr/role',
+          title: 'مدیریت نقش ها',
+          type: 'link',
+          dirchange: false,
+        },
       ],
     },
 
