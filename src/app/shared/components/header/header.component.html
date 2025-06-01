@@ -12,7 +12,7 @@
                     <a [routerLink]="['/dashboards/gaming']" class="header-logo">
                         <img src="./assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
                         <img src="./assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
-                        <img src="./assets/images/main-image/portrait_transparent_cropped.png" alt="logo" class="desktop-dark">
+                        <img src="./assets/images/main-image/logo1.png" alt="logo" class="desktop-dark">
                         <img src="./assets/images/brand-logos/toggle-dark.png" alt="logo" class="toggle-dark">
                     </a>
                 </div>
@@ -33,37 +33,13 @@
             <!-- Start::header-element -->
             <li class="header-element header-search d-md-block d-none">
                 <!-- Start::header-link -->
-                <input type="text" class="header-search-bar form-control border-0" placeholder="Search for Results...">
+                <input type="text" class="header-search-bar form-control border-0" placeholder="جستجو کنید...">
                 <a href="javascript:void(0);" class="header-search-icon border-0">
                     <i class="bi bi-search"></i>
                 </a>
                 <!-- End::header-link -->
             </li>
             <!-- End::header-element -->
-            
-            <!-- Start::header-element -->
-            <li class="header-element d-md-none d-block">
-                <a (click)="open(content1)" href="javascript:void(0);" class="header-link" data-bs-toggle="modal" data-bs-target="#header-responsive-search">
-                    <!-- Start::header-link-icon -->
-                    <i class="bi bi-search header-link-icon"></i>
-                    <!-- End::header-link-icon -->
-                </a>
-            </li>
-            <!-- End::header-element -->
-            <ng-template #content1 let-modal>
-                  <div class="modal-content">
-                      <div class="modal-body">
-                          <div class="input-group">
-                              <input type="text" class="form-control border-end-0" placeholder="Search Anything ..."
-                                  aria-label="Search Anything ..." aria-describedby="button-addon2">
-                              <button class="btn btn-primary" type="button"
-                                  id="button-addon2"><i class="bi bi-search"></i></button>
-                          </div>
-                      </div>
-                  </div>
-              
-        </ng-template>
-
             <!-- Start::header-element -->
             <li ngbDropdown class="header-element country-selector dropdown">
                 <!-- Start::header-link|dropdown-toggle -->
