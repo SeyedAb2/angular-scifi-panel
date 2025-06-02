@@ -107,7 +107,7 @@ export const admin: Routes = [
         import('./signin/cover/cover.component').then(
           (m) => m.CoverComponent
         ),
-        title: 'SCIFI - Sign In Cover'
+        title: 'رضوان - ورود'
     },
     {
       path: 'twostep-verification/basic',

@@ -7,11 +7,14 @@ import { LandingLayoutComponent } from './shared/layouts/landing-layout/landing-
 import { landing } from './shared/routes/landing.routes';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     {
-      path: 'auth/login',
+      path: 'login',
       loadComponent: () =>
-        import('../app/authentication/login/login.component').then((m) => m.LoginComponent),
+        import('../app/components/authentication/signin/cover/cover.component').then(
+          (m) => m.CoverComponent
+        ),
+        title: 'رضوان - ورود'
     },
     { path: '', component: ContentLayoutComponent, children: content },
     { path: '', component: AuthenticationLayoutComponent, children: authen },
