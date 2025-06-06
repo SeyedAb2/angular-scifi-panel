@@ -2,3 +2,19 @@
     width:30px;
     height:20px
 }
+.bg-color-search{
+    background-color: #0d4f42c6;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    overflow: hidden;
+    input , button {
+        border: none;
+    }
+}
+.bg-count{
+    background-color: rgb(1, 87, 38);
+}
+::ng-deep .ng-select.border-danger.ng-select-opened.ng-select-bottom > .ng-select-container , ::ng-deep .ng-select.border-danger .ng-select-container{
+    border-color:red !important
+}

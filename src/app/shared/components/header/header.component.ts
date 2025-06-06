@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, TemplateRef, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, TemplateRef, inject } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { SwitcherComponent } from '../switcher/switcher.component';
 import { AppStateService } from '../../services/app-state.service';
@@ -7,7 +7,7 @@ import { AppStateService } from '../../services/app-state.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
   public localdata:any;
 
@@ -17,6 +17,13 @@ export class HeaderComponent {
     }); 
   }
 
+  ngOnInit(): void {
+    let html = document.querySelector('html');
+    // html?.removeAttribute('data-card-background');
+    html?.setAttribute('data-theme-mode','dark');
+    let body = document.querySelector('body');
+    body?.classList.add('authentication-background');
+  }
   private modalService = inject(NgbModal);
   closeResult = '';
   open(content: TemplateRef<any>) {

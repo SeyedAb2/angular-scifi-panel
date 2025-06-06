@@ -7761,9 +7761,9 @@ input.error {
 
 .modal-content {
   color: rgb(var(--default-text-color-rgb));
-  background-color: var(--custom-white);
+  background-color: #022e23;
   border: 1px solid var(--default-border);
-  border-radius: 0.25rem;
+  border-radius: 1.25rem;
 }
 
 .modal-header {

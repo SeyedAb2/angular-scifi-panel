@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SharedModule } from '../../../shared/shared.module';
@@ -8,35 +8,25 @@ import { ConvertToPersianPipe } from '../../../shared/pips/convert-to-persian.pi
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [SharedModule,NgbModule,NgSelectModule,FormsModule,ConvertToPersianPipe],
+  imports: [
+    SharedModule,
+    NgbModule,
+    NgSelectModule,
+    FormsModule,
+    ConvertToPersianPipe,
+    ReactiveFormsModule
+  ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
 export class UsersComponent {
-  // Select1
-  selectedSimpleItem='Select Status';
+  formGroup!:FormGroup;
+  selectedSimpleItem='انتخاب وضعیت';
   simpleItems:any=[];
-  //Select2
-  selectedSimpleItem1='Social media';
-  simpleItems1:any=[];
-  // select3
-  selectedSimpleItem2='Social media';
-  simpleItems2:any=[];
-  
-  
+  isSubmit = false;
+  selectedCount = '10';
+  simpleItemsCount: any = ['10','20','50','100'];
   closeResult!: string;
-  
-  constructor(private modalService: NgbModal) {}
-  
-  openWindowCustomClass(content: any) {
-    this.modalService.open(content, { windowClass: 'dark-modal' });
-  }
-  ngOnInit(): void {
-    this.simpleItems=['Select Status','Closed','Contacted','Follow-up','New']
-    this.simpleItems1=['Social media','Blog Articles','Direct Mail','Organic Serach','Affilites']
-    this.simpleItems2=['Hopt Lead','InFluencer','LostCustomer','Newlead','Patner']
-  }
-  
   InvoiceData = [
     {
       "id": 1,
@@ -165,18 +155,78 @@ export class UsersComponent {
       "username": "rezvan@134501"
     }
   ]
+  url1: string = ''; // Assuming url1 is a property in your component
+  item:any;
+  constructor(private modalService: NgbModal) {}
+  ngOnInit(): void {
+    this.simpleItems=['فعال','غیر فعال','تعیین نشده']
+  }
+  addUserDialog(content: any,e:any) {
+    e.stopPropagation()
+    this.formGroup = new FormGroup({
+      id:new FormControl(Math.floor(Math.random() * 10000) + 1),
+      name:new FormControl('',Validators.required),
+      img:new FormControl(''),
+      status:new FormControl('انتخاب وضعیت',Validators.required),
+      username:new FormControl('',Validators.required),
+    })
+    this.modalService.open(content, { windowClass: 'dark-modal',centered:true }).result.then(
+      (result) => {
+        if (result === 'add') {
+        }
+      },
+      (reason) => {
+        this.resetForm()
+        // اینجا کاربر روی دکمه لغو یا بیرون کلیک کرده
+      }
+    );
+  }
+  addFunc(modal:any){
+    this.isSubmit = true
+    if(this.formGroup.valid){
+      this.InvoiceData.unshift({
+        id:this.formGroup.value.id,
+        name:this.formGroup.value.name,
+        img:this.url1,
+        status:this.convertStatus(this.formGroup.value.status),
+        username:this.formGroup.value.username,
+      })
+      modal.close('add')
+      this.resetForm()
+    }else{
 
-
-  
-  DeleteClick(InvoiceData: any) {
+    }
+  }
+  convertStatus(status:any){
+    return status=='فعال' ? 'ACTIVE' : status=='غیر فعال' ? 'INACTIVE' : 'UNKNOWN'
+  }
+  deleteFunc(InvoiceData: any) {
     let filterData = this.InvoiceData.filter((ele) => {
-      return ele.name != InvoiceData;
+      return ele.id != InvoiceData.id;
     });
     this.InvoiceData = filterData;
   }
+  resetForm(){
+    this.formGroup.reset()
+    this.isSubmit = false
+    this.url1 = ''
+  }
   
-  url1: string = ''; // Assuming url1 is a property in your component
-  
+  deleteDialog(content: any,e:any,item:any) {
+    this.item = item
+    e.stopPropagation()
+    this.modalService.open(content, { windowClass: 'dark-modal',centered:true }).result.then(
+      (result) => {
+        if (result === 'delete') {
+          this.deleteFunc(item)
+          // this.deleteItem.emit(this.data)
+        }
+      },
+      (reason) => {
+        // اینجا کاربر روی دکمه لغو یا بیرون کلیک کرده
+      }
+    );
+  }
   handleFileInput(event: any): void {
     const file = event.target.files[0];
     if (file) { 
