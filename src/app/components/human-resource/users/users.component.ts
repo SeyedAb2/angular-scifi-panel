@@ -4,20 +4,24 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SharedModule } from '../../../shared/shared.module';
 import { ConvertToPersianPipe } from '../../../shared/pips/convert-to-persian.pipe';
+import { fade } from '../../../shared/animation/animation';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
+    RouterModule,
     SharedModule,
     NgbModule,
     NgSelectModule,
     FormsModule,
     ConvertToPersianPipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrl: './users.component.scss',
+  animations:[fade]
 })
 export class UsersComponent {
   formGroup!:FormGroup;
@@ -27,7 +31,7 @@ export class UsersComponent {
   selectedCount = '10';
   simpleItemsCount: any = ['10','20','50','100'];
   closeResult!: string;
-  InvoiceData = [
+  InvoiceData:any[] = [
     {
       "id": 1,
       "name": "سجاد ایروانی",
@@ -236,5 +240,8 @@ export class UsersComponent {
       };
       reader.readAsDataURL(file);
     }
+  }
+  fetchUser(data:any){
+    localStorage.setItem('user',JSON.stringify(data))
   }
 }

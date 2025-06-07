@@ -11,6 +11,18 @@ export const humanResource: Routes = [
         title: 'منابع انسانی  - مدیریت کاربران'
     },
     {
+      path: 'users/:username',
+      loadComponent: () =>
+        import('./users/view/view.component').then((m) => m.ViewComponent),
+        title: 'منابع انسانی  - مدیریت کاربر'
+    }, 
+    {
+      path: 'users/:username/edit',
+      loadComponent: () =>
+        import('./users/edit/edit.component').then((m) => m.EditComponent),
+        title: 'منابع انسانی  - مدیریت کاربرا'
+    },  
+    {
       path: 'access',
       loadComponent: () =>
         import('./access/access.component').then((m) => m.AccessComponent),

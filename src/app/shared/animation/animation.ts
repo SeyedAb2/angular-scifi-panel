@@ -15,3 +15,10 @@ export const collapseTeamCard = trigger('expandCollapse', [
   })),
   transition('void <=> *', animate('200ms ease-in-out'))
 ]);
+
+export const fade = trigger('fade', [
+    transition(':enter', [
+      style({ opacity:0 }),
+      animate('0.3s ease-in', style({ opacity: 1 }))
+    ])
+])

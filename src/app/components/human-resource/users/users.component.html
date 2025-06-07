@@ -1,5 +1,5 @@
  <!-- Start::row-1 -->
- <div class="row">
+ <div @fade class="row">
     <div class="col-xl-12">
         <div class="card custom-card">
             <div class="top-left"></div>
@@ -43,6 +43,11 @@
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table text-nowrap border-top">
+                        @if(!InvoiceData.length){
+                            <div class="row w-100 align-items-center justify-content-center p-3">
+                                <h2 class="col-12 h6 d-flex align-items-center justify-content-center">کاربری وجود ندارد!!</h2>
+                            </div>
+                        }
                         <thead>
                             <tr>
                                 <th scope="col">شناسه</th>
@@ -56,7 +61,7 @@
                                 <th scope="col">عملیات</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="container">
                             @for(data of InvoiceData;track $index){
                             <tr class="crm-contact">
                                 <td>
@@ -65,7 +70,7 @@
                                     </div>
                                 </td> 
                                 <td>
-                                    <div class="d-flex align-items-center gap-2 ">
+                                    <a (click)="fetchUser(data)" [routerLink]="[data.username]" routerLinkActive="router-link-active"  class="d-flex cur-pointer align-items-center gap-2 ">
                                         <div class="lh-1">
                                             <span class="avatar avatar-rounded avatar-sm">
                                                 <img src="{{data.img ? data.img :'./assets/images/faces/9.jpg'}}" alt="">
@@ -74,7 +79,7 @@
                                         <div>
                                             <span class="d-block fw-medium">{{data.name}}</span>
                                         </div>
-                                    </div>
+                                    </a>
                                 </td>
                                 <td>
                                     <div>
@@ -93,8 +98,8 @@
                                 
                                 <td>
                                     <div class="btn-list">
-                                        <a class="btn btn-sm btn-warning-light btn-icon"><i class="ri-eye-line"></i></a>
-                                        <button class="btn btn-sm btn-info-light btn-icon"><i class="ri-pencil-line"></i></button>
+                                        <a (click)="fetchUser(data)" [routerLink]="[data.username]" class="btn btn-sm btn-warning-light btn-icon"><i class="ri-eye-line"></i></a>
+                                        <button (click)="fetchUser(data)" [routerLink]="[data.username,'edit']" class="btn btn-sm btn-info-light btn-icon"><i class="ri-pencil-line"></i></button>
                                         <button (click)="deleteDialog(deleteModal, $event, data)" class="btn btn-sm btn-danger-light btn-icon contact-delete"><i class="ri-delete-bin-line"></i></button>
                                     </div>
                                 </td>
