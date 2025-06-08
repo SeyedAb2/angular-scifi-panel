@@ -23,6 +23,5 @@ export class ViewComponent implements OnInit{
     }else{
       this.router.navigate(['/hr/users'])
     }
-    console.log(this.data)
   }
 }

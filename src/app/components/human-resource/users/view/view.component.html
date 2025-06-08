@@ -12,155 +12,59 @@
                         <div class="d-flex align-items-center gap-2 mb-4">
                             <div class="lh-1">
                                 <span class="avatar avatar-xxl online me-3">
-                                    <img src="./assets/images/faces/9.jpg" alt="">
+                                    <img [src]="data.img" alt="">
                                 </span>
                             </div>
                             <div class="flex-fill main-profile-info">
                                 <div class="d-flex align-items-center justify-content-between mb-1">
-                                    <h5 class="fw-medium mb-1">James Lucas</h5>
+                                    <h5 class="fw-medium mb-1">{{data.name}}</h5>
                                 </div>
-                                <p class="mb-1 text-muted op-7">Managing Director(M.D)</p>
+                                <p class="mb-1 text-muted op-7">مدیر فنی</p>
                                 <p class="fs-12 mb-0 op-5">
-                                    <span class=""><i class="ri-map-pin-line me-1 d-inline-block"></i>Suite 456,New York,</span> 
-                                    <span> USA</span> 
+                                    <span class=""><i class="ri-map-pin-line me-1 d-inline-block"></i>تهران</span> 
+                                    <span> اسلامشهر</span> 
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="ms-auto">
-                        <a [routerLink]="['/pages/profile-settings']"   class="btn btn-outline-primary"><i class="ri-settings-3-line me-1 d-inline-block"></i>Profile Settings</a>
+                        <a [routerLink]="['edit']"   class="btn btn-outline-primary"><i class="ri-settings-3-line me-1 d-inline-block"></i>ویرایش نمایه</a>
                     </div>
                 </div>
                 <div class="d-sm-flex flex-wrap align-items-top gap-5 justify-content-between p-2 border-bottom-0">
                     <div class="professional-bio">
                         <div class="mb-4">
-                            <p class="fs-15 mb-3 fw-medium">About :</p>
-                            <p class="fs-12 text-muted op-7 mb-0">
-                                I am <b class="text-default">James Lucas,</b> Managing Director with deep love for designing, managing team, supporting team and management. Over the past 15 years, my journey has been a fascinating blend of milestones, shaping me into the person I am today.
+                            <p class="fs-15 mb-3 fw-medium">درباره :</p>
+                            <p class="fs-12 text-muted op-7 mb-0 lh-md">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت است.
                             </p>
                         </div>
-                        <div class="mb-0">
-                            <p class="fs-15 mb-2 fw-medium">Links :</p>
-                            <div class="mb-0">
-                                <p class="mb-0 fs-14">
-                                    <a href="https://themeforest.net/user/spruko/portfolio" target="_blank" class="text-primary"><u>https://themeforest.net/user/spruko/portfolio</u></a>
-                                </p>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div>
-                        <p class="fs-15 mb-3 me-4 fw-medium">Contact Information :</p>
+                        <p class="fs-15 mb-3 me-4 fw-medium">راه های ارتباطی :</p>
                         <div class="text-muted">
                             <p class="fs-14 mb-4">
                                 <span class="avatar avatar-sm me-2 bg-primary-transparent text-primary border text-muted">
                                     <i class="ri-mail-line align-middle fs-14"></i>
                                 </span>
-                                jameslucas025414&#64;gmail.com
+                                {{'info@info.com'}}
                             </p>
                             <p class="fs-14 mb-4">
                                 <span class="avatar avatar-sm me-2 bg-primary-transparent text-primary border text-muted">
                                     <i class="ri-phone-line align-middle fs-14"></i>
                                 </span>
-                                +(222) 222-4251, +(245) 245-4815
+                                ۰۹۱۲۳۴۵۶۷۸۹
                             </p>
                             <p class="fs-14 mb-0">
                                 <span class="avatar avatar-sm me-2 bg-primary-transparent text-primary border text-muted">
                                     <i class="ri-map-pin-line align-middle fs-14"></i>
                                 </span>
-                                AB-4541-A, San Morten Street, All-In-One town, USA,20071
+                                استان تهران، تهران، اسلامشهر
                             </p>
                         </div>
                     </div>
-                    <div class="skills-section">
-                        <p class="fs-15 mb-3 me-4 fw-medium">Skills :</p>
-                        <div class="d-flex align-items-center gap-2 flex-wrap mb-4">
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">Web development</span>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">Product Design</span>
-                            </a>    
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">UX Design</span>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">Web Development</span>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">Programming</span>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">Web Designing</span>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">Database management</span>
-                            </a>
-                            <a href="javascript:void(0);">
-                                <span class="badge bg-light border text-muted fw-medium">JavaScript</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer border-top border-block-start-dashed">
-                <div class="d-sm-flex flex-wrap align-items-top gap-5 border-bottom-0 justify-content-between">
-                    <div class="d-sm-flex gap-4">
-                        <div class="me-sm-3">
-                            <div class="d-flex gap-3">
-                                <span class="avatar avatar-md bg-light">
-                                    <i class="ri-pages-line"></i>
-                                </span>
-                                <div>
-                                    <p class="mb-0 fs-11 op-5">Projects</p>
-                                    <p class="fw-bold fs-18 text-shadow mb-0">245</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="me-sm-3">
-                            <div class="d-flex gap-3">
-                                <span class="avatar avatar-md bg-light">
-                                    <i class="ri-group-line"></i>
-                                </span>
-                                <div>
-                                    <p class="mb-0 fs-11 op-5">Followers</p>
-                                    <p class="fw-bold fs-18 text-shadow mb-0">24.1k</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="me-0 me-sm-3">
-                            <div class="d-flex gap-3">
-                                <span class="avatar avatar-md bg-light">
-                                    <i class="ri-user-follow-line"></i>
-                                </span>
-                                <div>
-                                    <p class="mb-0 fs-11 op-5">Following</p>
-                                    <p class="fw-bold fs-18 text-shadow mb-0">142</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-sm-flex justify-content-between gap-3 align-items-center">
-                        <div class="d-flex align-items-center gap-3 flex-wrap">
-                            <h6 class="fw-medium">Follow :</h6>
-                            <div class="btn-list mb-0">
-                                <button class="btn btn-sm btn-icon btn-primary-light btn-wave waves-effect waves-light">
-                                    <i class="ri-facebook-line fw-medium"></i>
-                                </button>
-                                <button class="btn btn-sm btn-icon btn-secondary-light btn-wave waves-effect waves-light">
-                                    <i class="ri-twitter-x-line fw-medium"></i>
-                                </button>
-                                <button class="btn btn-sm btn-icon btn-warning-light btn-wave waves-effect waves-light">
-                                    <i class="ri-instagram-line fw-medium"></i>
-                                </button>
-                                <button class="btn btn-sm btn-icon btn-success-light btn-wave waves-effect waves-light">
-                                    <i class="ri-github-line fw-medium"></i>
-                                </button>
-                                <button class="btn btn-sm btn-icon btn-danger-light btn-wave waves-effect waves-light">
-                                    <i class="ri-youtube-line fw-medium"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
