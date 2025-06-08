@@ -1,1 +1,87 @@
-<p>edit works!</p>
+<!-- Start:: row-1 -->
+<div class="row justify-content-center">
+    <div class="col-xxl-12">
+        <div class="mb-4">
+            <h5 class="fw-medium mb-0">ویرایش کاربر</h5>
+            <div class="text-muted fs-13 op-8 mb-3 mt-1">
+                ویرایش اطلاعات مربوط به کاربر
+            </div>
+        </div>
+        <div class="card custom-card">
+            <div class="top-left"></div>
+            <div class="top-right"></div>
+            <div class="bottom-left"></div>
+            <div class="bottom-right"></div>
+            <div class="card-body">
+                <div class="row mt-4 justify-content-center">
+                    <form [formGroup]="formGroup">
+                        <div class="col-md-12">
+                            <div class="flex-column nav-pills me-3 tab-style-7" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <div class="mb-4 d-sm-flex align-items-center gap-1 flex-wrap">
+                                    <span class="mb-0 me-3 avatar avatar-xxl">
+                                        <img [src]="url1 ? url1 : './assets/images/faces/9.jpg'" alt="" class="profile-img">
+                                        <span (change)="handleFileInput($event)" class="badge bg-primary avatar-badge cursor-pointer">
+                                            <input type="file" name="photo" class="position-absolute w-100 op-0 profile-change">
+                                            <i class="fe fe-camera"></i>
+                                        </span>
+                                    </span>
+                                    <div class="">
+                                        <div class="fw-medium lh-1"> {{data.name}}</div>
+                                        <div class="fs-12 text-muted">{{data.username}}</div>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <div class="d-flex gap-2">
+                                            <div class="upload-btn-wrapper">
+                                                <button (change)="handleFileInput($event)" class="btn btn-primary-light"><i class="fe fe-upload me-2 d-inline-block"></i>بارگزاری تصویر</button>
+                                                <input type="file" class="profile-change" name="myfile" />
+                                            </div>
+                                            <button class="btn btn-danger-light"><i class="fe fe-x me-2 d-inline-block"></i>حذف تصویر</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gy-4 mb-4">
+                                    <div class="col-xl-6">
+                                        <label for="first-name" class="form-label">نام و نام خانوداگی :</label>
+                                        <input type="text" formControlName="name" [(ngModel)]="formGroup.value.name" class="form-control" id="first-name" placeholder="نام و نام خانوادگی خود را بنویسید">
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label for="phone" class="form-label">تلفن همراه</label>
+                                        <input type="tel" formControlName="phone" [(ngModel)]="formGroup.value.phone" class="form-control" id="phone" placeholder="تلفن همراه خود را وارد کنید">
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label for="user-name" class="form-label">پست الکترونیکی :</label>
+                                        <input type="email" formControlName="email" [(ngModel)]="formGroup.value.email" class="form-control" id="user-name" placeholder="Anthony Richel">
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <label for="user-name" class="form-label">نقش :</label>
+                                        <input type="text" formControlName="role" [(ngModel)]="formGroup.value.role" class="form-control" id="user-name" placeholder="Anthony Richel">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-xl-12 mb-4">
+                                        <label for="about" class="form-label">درباره :</label>
+                                        <textarea class="form-control" formControlName="about" [(ngModel)]="formGroup.value.about" id="about" rows="5">{{formGroup.value.about}}</textarea>
+                                    </div>
+                                    <div class="col-xl-12 mb-4">
+                                        <label for="language" class="form-label">وضعیت :</label>
+                                        <ng-select placeholder="وضعیت خود را کنید" name="language" data-trigger id="language" >
+                                        <ng-option *ngFor="let option of simpleItems" [value]="'ACTIVE'" selected>{{option}}</ng-option>
+                                        </ng-select>
+                                    </div>
+                                    
+                                </div>    
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <div class="btn-list">
+                    <button routerLink="/hr/users/" class="btn btn-primary">ذخیره تغییرات</button>
+                    <button routerLink="/hr/users/" class="btn btn-primary-light">انصراف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End:: row-1 -->

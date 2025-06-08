@@ -19,10 +19,11 @@
                                 <div class="d-flex align-items-center justify-content-between mb-1">
                                     <h5 class="fw-medium mb-1">{{data.name}}</h5>
                                 </div>
-                                <p class="mb-1 text-muted op-7">مدیر فنی</p>
+                                <p class="mb-1 text-muted op-7">{{detail.role}}</p>
                                 <p class="fs-12 mb-0 op-5">
-                                    <span class=""><i class="ri-map-pin-line me-1 d-inline-block"></i>تهران</span> 
-                                    <span> اسلامشهر</span> 
+                                    <span class=""><i class="ri-map-pin-line me-1 d-inline-block"></i>
+                                    <span>{{detail.location}}</span>
+                                    </span> 
                                 </p>
                             </div>
                         </div>
@@ -36,7 +37,7 @@
                         <div class="mb-4">
                             <p class="fs-15 mb-3 fw-medium">درباره :</p>
                             <p class="fs-12 text-muted op-7 mb-0 lh-md">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت است.
+                                {{detail.about}}
                             </p>
                         </div>
                         
@@ -48,19 +49,19 @@
                                 <span class="avatar avatar-sm me-2 bg-primary-transparent text-primary border text-muted">
                                     <i class="ri-mail-line align-middle fs-14"></i>
                                 </span>
-                                {{'info@info.com'}}
+                                {{detail.email}}
                             </p>
                             <p class="fs-14 mb-4">
                                 <span class="avatar avatar-sm me-2 bg-primary-transparent text-primary border text-muted">
                                     <i class="ri-phone-line align-middle fs-14"></i>
                                 </span>
-                                ۰۹۱۲۳۴۵۶۷۸۹
+                                {{detail.phone}}
                             </p>
                             <p class="fs-14 mb-0">
                                 <span class="avatar avatar-sm me-2 bg-primary-transparent text-primary border text-muted">
                                     <i class="ri-map-pin-line align-middle fs-14"></i>
                                 </span>
-                                استان تهران، تهران، اسلامشهر
+                                {{detail.location}}
                             </p>
                         </div>
                     </div>

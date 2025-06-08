@@ -27,10 +27,10 @@ export class UsersComponent {
   formGroup!:FormGroup;
   selectedSimpleItem='انتخاب وضعیت';
   simpleItems:any=[];
-  isSubmit = false;
   selectedCount = '10';
   simpleItemsCount: any = ['10','20','50','100'];
   closeResult!: string;
+  isSubmit = false;
   InvoiceData:any[] = [
     {
       "id": 1,
