@@ -1,0 +1,1 @@
+import{c as e,d as t,g as a,h as o,j as s}from"./chunk-HX3ESI56.js";var r=e("expandCollapse",[o("void",a({transform:"scale(0.8)",opacity:0})),o("*",a({transform:"scale(1)",opacity:1})),s("void <=> *",t("200ms ease-in-out"))]),n=e("fade",[s(":enter",[a({opacity:0}),t("0.3s ease-in",a({opacity:1}))])]);export{r as a,n as b};
